@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 shot-scraper = "*"
+python-twitter = "*"
 
 [dev-packages]
 

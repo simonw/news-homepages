@@ -38,3 +38,6 @@ jobs:
 
       - name: Take shots
         run: make run
+
+      - name: Tweet
+        run: make tweet
