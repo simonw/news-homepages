@@ -1,7 +1,6 @@
 name: Take screnshots
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron:  '0 */4 * * *'
