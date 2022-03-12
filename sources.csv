@@ -1,3 +1,6 @@
-handle,url
-latimes,https://www.latimes.com
-nytimes,https://www.nytimes.com
+handle,url,width,height,wait
+latimes,https://www.latimes.com,,2000,
+nytimes,https://www.nytimes.com,,,
+cnn,https://www.cnn.com/,,,
+wsj,https://www.wsj.com/,,2000,
+foxnews,https://www.foxnews.com/,,,

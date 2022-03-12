@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     fail-fast: false
       matrix:
-        source: ["latimes", "nytimes"]
+        source: ["latimes", "nytimes", "cnn", "wsj", "foxnews",]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
