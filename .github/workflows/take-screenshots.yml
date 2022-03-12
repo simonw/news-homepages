@@ -6,9 +6,11 @@ on:
     - cron:  '0 */4 * * *'
 
 jobs:
-  test:
+  take-screenshot:
+    name: Take screenshot
     runs-on: ubuntu-latest
-    fail-fast: false
+    strategy:
+      fail-fast: false
       matrix:
         source: ["latimes", "nytimes"]
     steps:
