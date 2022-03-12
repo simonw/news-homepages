@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        source: ["latimes", "nytimes", "cnn", "wsj", "foxnews",]
+        source: ["latimes", "nytimes", "cnn", "wsj", "foxnews", "kyivindependent"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
