@@ -8,6 +8,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    fail-fast: false
+      matrix:
+        source: ["latimes", "nytimes"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,10 +40,10 @@ jobs:
         run: make install
 
       - name: Take shots
-        run: make run
+        run: pipenv run python shoot.py ${{ matrix.source }}
 
       - name: Tweet
-        run: make tweet
+        run: pipenv run python tweet.py ${{ matrix.source }}
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
