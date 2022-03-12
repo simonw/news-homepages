@@ -3,19 +3,20 @@ from datetime import datetime
 import os
 import subprocess
 
-import twitter
 import click
+import pytz
+import twitter
 
 
 HANDLE_LIST = csv.DictReader(open("./sources.csv", "r"))
-HANDLE_LOOKUP = dict((d['handle'], d['url']) for d in HANDLE_LIST)
+HANDLE_LOOKUP = dict((d['handle'], d) for d in HANDLE_LIST)
 
 
 @click.command()
 @click.argument('handle')
 def main(handle):
     # Pull the source’s metadata
-    url = HANDLE_LOOKUP[handle]
+    data = HANDLE_LOOKUP[handle]
 
     # Connect to Twitter
     api = twitter.Api(
@@ -25,8 +26,15 @@ def main(handle):
         access_token_secret=os.getenv('TWITTER_ACCESS_TOKEN_SECRET')
     )
 
+    # Get the timestamp
+    now = datetime.now()
+
+    # Convert it to local time
+    tz = pytz.timezone(data['timezone'])
+    now_local = now.astimezone(tz)
+
     # Create the headline
-    tweet = f"The @{handle} homepage"
+    tweet = f"The @{handle} homepage at {now_local.strftime('%-I:%M %p')} local time"
 
     # Get the image
     image_path = f"./{handle}.jpg"
@@ -37,10 +45,7 @@ def main(handle):
     api.PostMediaMetadata(media_id, tweet)
 
     # Make the tweet
-    api.PostUpdate(
-        tweet,
-        media=media_id,
-    )
+    api.PostUpdate(tweet, media=media_id)
 
 
 if __name__ == "__main__":
