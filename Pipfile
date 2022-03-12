@@ -8,6 +8,7 @@ shot-scraper = "*"
 python-twitter = "*"
 click = "*"
 pytz = "*"
+internetarchive = "*"
 
 [dev-packages]
 
