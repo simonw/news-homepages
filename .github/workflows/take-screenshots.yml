@@ -51,3 +51,11 @@ jobs:
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+      - id: save
+        name: Save artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.source }}-${{ github.run_number }}-image
+          path: ${{ matrix.source }}.jpg
+          if-no-files-found: error
