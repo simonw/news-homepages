@@ -1,0 +1,21 @@
+name: U.S. national newspapers
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 3,9,15,21 * * *'
+
+jobs:
+  take-screenshot:
+    name: Take screenshot
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        source: ["latimes", "nytimes", "wsj"]
+    steps:
+      - id: screenshot
+        name: Screenshot
+        uses: ./.github/actions/screenshot
+        with:
+          source: ${{ matrix.source }}

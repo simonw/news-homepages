@@ -1,0 +1,21 @@
+name: U.S. national television
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0,6,12,18 * * *'
+
+jobs:
+  take-screenshot:
+    name: Take screenshot
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        source: ["cnn", "foxnews"]
+    steps:
+      - id: screenshot
+        name: Screenshot
+        uses: ./.github/actions/screenshot
+        with:
+          source: ${{ matrix.source }}

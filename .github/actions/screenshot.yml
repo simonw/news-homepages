@@ -1,0 +1,53 @@
+inputs:
+  source:
+    description: “The site handle to screenshot”
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - id: install-pipenv
+      name: Install pipenv
+      run: pipx install pipenv
+
+    - id: install-python
+      name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+        cache: 'pipenv'
+
+    - name: Cache Playwright browsers
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/ms-playwright/
+        key: ${{ runner.os }}-browsers
+
+    - id: install-python-dependencies
+      name: Install Python dependencies
+      run: pipenv install --dev
+
+    - name: Install Playwright dependencies
+      run: pipenv run shot-scraper install
+
+    - name: Take shots
+      run: pipenv run python shoot.py ${{ inputs.source }}
+
+    - name: Tweet
+      run: pipenv run python tweet.py ${{ inputs.source }}
+      env:
+        TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+        TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+        TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+    - id: save
+      name: Save artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.source }}-${{ github.run_number }}-image
+        path: ${{ inputs.source }}.jpg
+        if-no-files-found: error

@@ -1,0 +1,21 @@
+name: Eastern Europe
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '30 1,13 * * *'
+
+jobs:
+  take-screenshot:
+    name: Take screenshot
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        source: ["kyivindependent", "meduzaproject"]
+    steps:
+      - id: screenshot
+        name: Screenshot
+        uses: ./.github/actions/screenshot
+        with:
+          source: ${{ matrix.source }}
