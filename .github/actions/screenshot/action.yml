@@ -12,6 +12,8 @@ inputs:
     required: true
   telegram-api-key:
     required: true
+  discord-bot-token:
+    required: true
 
 runs:
   using: "composite"
@@ -25,8 +27,8 @@ runs:
       name: Install Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
-        cache: 'pipenv'
+        python-version: "3.9"
+        cache: "pipenv"
 
     - id: cache-playwright
       name: Cache Playwright browsers
@@ -50,15 +52,15 @@ runs:
       run: pipenv run python shoot.py single ${{ inputs.source }}
       shell: bash
 
-#    - id: tweet
-#      name: Tweet
-#      run: pipenv run python tweet.py single ${{ inputs.source }}
-#      shell: bash
-#      env:
-#        TWITTER_CONSUMER_KEY: ${{ inputs.twitter-consumer-key }}
-#        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
-#        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
-#        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
+    #    - id: tweet
+    #      name: Tweet
+    #      run: pipenv run python tweet.py single ${{ inputs.source }}
+    #      shell: bash
+    #      env:
+    #        TWITTER_CONSUMER_KEY: ${{ inputs.twitter-consumer-key }}
+    #        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
+    #        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
+    #        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
 
     - id: telegram
       name: Telegram
@@ -66,6 +68,13 @@ runs:
       shell: bash
       env:
         TELEGRAM_API_KEY: ${{ inputs.telegram-api-key }}
+
+    - id: discord
+      name: Discord
+      run: pipenv run python discorder.py ${{ inputs.source }}
+      shell: bash
+      env:
+        DISCORD_BOT_TOKEN: ${{ inputs.discord-bot-token }}
 
     - id: save
       name: Save artifact

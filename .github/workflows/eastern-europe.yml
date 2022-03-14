@@ -3,7 +3,7 @@ name: Eastern Europe
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '30 1,13 * * *'
+    - cron: "30 1,13 * * *"
 
 jobs:
   take-screenshot:
@@ -28,3 +28,4 @@ jobs:
           twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
           twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
+          discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
