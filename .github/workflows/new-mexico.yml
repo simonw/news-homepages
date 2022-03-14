@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        source: ["abqjournal", "abqbizfirst", "sfnewmexican", "sourcenm", "lcsn"]
+        source: ["ABQJournal", "abqbizfirst", "thenewmexican", "source_nm", "CrucesSunNews"]
     steps:
       - id: checkout
         name: Checkout
