@@ -11,8 +11,8 @@ laist,https://laist.com/,LAist,,,,America/Los_Angeles,socal
 sdut,https://www.sandiegouniontribune.com/,San Diego Union Tribune,,,,America/Los_Angeles,socal
 ft-uk,https://ft.com/?edition=uk,Financial Times,,,,Europe/London,uk-national-newspapers
 guardian-uk,https://theguardian.com/uk,The Guardian,,,,Europe/London,uk-national-newspapers
-abqjournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
+ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
 abqbizfirst,https://www.bizjournals.com/albuquerque/,Albuquerque Business First,,2000,,America/Denver,newmexico
-sfnewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,2000,,America/Denver,newmexico
-sourcenm,https://sourcenm.com/,Source New Mexico,,2000,,America/Denver,newmexico
-lcsn,https://www.lcsun-news.com/,Las Cruces Sun News,,2000,,America/Denver,newmexico
+thenewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,2000,,America/Denver,newmexico
+source_nm,https://sourcenm.com/,Source New Mexico,,2000,,America/Denver,newmexico
+CrucesSunNews,https://www.lcsun-news.com/,Las Cruces Sun News,,2000,,America/Denver,newmexico
