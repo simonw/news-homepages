@@ -10,6 +10,8 @@ inputs:
     required: true
   twitter-access-token-secret:
     required: true
+  telegram-api-key:
+    required: true
 
 runs:
   using: "composite"
@@ -48,15 +50,22 @@ runs:
       run: pipenv run python shoot.py single ${{ inputs.source }}
       shell: bash
 
-    - id: tweet
-      name: Tweet
-      run: pipenv run python tweet.py single ${{ inputs.source }}
+#    - id: tweet
+#      name: Tweet
+#      run: pipenv run python tweet.py single ${{ inputs.source }}
+#      shell: bash
+#      env:
+#        TWITTER_CONSUMER_KEY: ${{ inputs.twitter-consumer-key }}
+#        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
+#        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
+#        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
+
+    - id: telegram
+      name: Telegram
+      run: pipenv run python telegrammer.py ${{ inputs.source }}
       shell: bash
       env:
-        TWITTER_CONSUMER_KEY: ${{ inputs.twitter-consumer-key }}
-        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
-        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
+        TELEGRAM_API_KEY: ${{ inputs.telegram-api-key }}
 
     - id: save
       name: Save artifact

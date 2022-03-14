@@ -1,11 +1,11 @@
-handle,url,width,height,wait,timezone,bundle
-latimes,https://www.latimes.com,,2000,,America/Los_Angeles,socal
-nytimes,https://www.nytimes.com,,,,America/New_York,us-national-newspapers
-cnn,https://www.cnn.com/,,,,US/Eastern,us-national-television
-wsj,https://www.wsj.com/,,2000,,America/New_York,us-national-newspapers
-foxnews,https://www.foxnews.com/,,,,America/New_York,us-national-television
-kyivindependent,https://kyivindependent.com/,,,,Europe/Kiev,eastern-europe
-bbc,https://www.bbc.com/news,,,,Europe/London,
-meduzaproject,https://meduza.io/,,1800,4000,Europe/Riga,eastern-europe
-laist,https://laist.com/,,,,America/Los_Angeles,socal
-sdut,https://www.sandiegouniontribune.com/,,,,America/Los_Angeles,socal
+handle,url,name,width,height,wait,timezone,bundle
+latimes,https://www.latimes.com,Los Angeles Times,,2000,,America/Los_Angeles,socal
+nytimes,https://www.nytimes.com,New York Times,,,,America/New_York,us-national-newspapers
+cnn,https://www.cnn.com/,CNN,,,,US/Eastern,us-national-television
+wsj,https://www.wsj.com/,Wall Street Journal,,2000,,America/New_York,us-national-newspapers
+foxnews,https://www.foxnews.com/,Fox News,,,,America/New_York,us-national-television
+kyivindependent,https://kyivindependent.com/,Kyiv Independent,,,,Europe/Kiev,eastern-europe
+bbc,https://www.bbc.com/news,BBC,,,,Europe/London,
+meduzaproject,https://meduza.io/,Meduza,,1800,4000,Europe/Riga,eastern-europe
+laist,https://laist.com/,LAist,,,,America/Los_Angeles,socal
+sdut,https://www.sandiegouniontribune.com/,San Diego Union Tribune,,,,America/Los_Angeles,socal

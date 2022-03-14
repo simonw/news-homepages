@@ -10,6 +10,7 @@ click = "*"
 pytz = "*"
 internetarchive = "*"
 python-slugify = "*"
+python-telegram-bot = "*"
 
 [dev-packages]
 

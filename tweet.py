@@ -1,7 +1,6 @@
 import csv
 from datetime import datetime
 import os
-import subprocess
 
 import click
 import pytz

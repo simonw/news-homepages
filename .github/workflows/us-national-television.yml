@@ -27,3 +27,4 @@ jobs:
           twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
           twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
