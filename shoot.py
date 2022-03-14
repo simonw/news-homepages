@@ -1,14 +1,19 @@
 import csv
-import click
+import logging
 import subprocess
 
+import click
 
-HANDLE_LIST = csv.DictReader(open("./sources.csv", "r"))
-HANDLE_LOOKUP = dict((d['handle'], d) for d in HANDLE_LIST)
+SOURCE_LIST = list(csv.DictReader(open("./sources.csv", "r")))
+SOURCE_LOOKUP = dict((d['handle'], d) for d in SOURCE_LIST)
+BUNDLE_LIST = list(csv.DictReader(open("./bundles.csv", "r")))
+BUNDLE_LOOKUP = dict((d['slug'], d) for d in BUNDLE_LIST)
 
 DEFAULT_WIDTH = "1300"
 DEFAULT_HEIGHT = "1600"
 DEFAULT_WAIT = "2000"
+
+logger = logging.getLogger(__name__)
 
 
 @click.group()
@@ -19,20 +24,52 @@ def cli():
 @cli.command()
 @click.argument('handle')
 def single(handle):
-    data = HANDLE_LOOKUP[handle]
+    """Screenshot a single source."""
+    data = SOURCE_LOOKUP[handle]
+    _shoot(
+        data['url'],
+        f"{data['handle']}.jpg",
+        data['width'] or DEFAULT_WIDTH,
+        data['height'] or DEFAULT_HEIGHT,
+        data['wait'] or DEFAULT_WAIT
+    )
+
+
+@cli.command()
+@click.argument('slug')
+def bundle(slug):
+    """Screenshot a bundle of sources."""
+    # Pull the source metadata
+    bundle = BUNDLE_LOOKUP[slug]
+    target_list = [h for h in SOURCE_LIST if h['bundle'] == slug]
+
+    # Loop through the targets
+    for target in target_list:
+        # Shoot them one by one
+        _shoot(
+            target['url'],
+            f"{target['handle']}.jpg",
+            target['width'] or DEFAULT_WIDTH,
+            target['height'] or DEFAULT_HEIGHT,
+            target['wait'] or DEFAULT_WAIT
+        )
+
+
+def _shoot(url, output, width, height, wait):
+    logger.debug(f"Shooting {url}")
     subprocess.run([
         "shot-scraper",
-        data['url'],
+        url,
         "-o",
-         f"{handle}.jpg",
+        output,
         "--quality",
         "80",
         "--width",
-        data['width'] or DEFAULT_WIDTH,
+        width,
         "--height",
-        data['height'] or DEFAULT_HEIGHT,
+        height,
         "--wait",
-        data['wait'] or DEFAULT_WAIT,
+        wait,
     ])
 
 
