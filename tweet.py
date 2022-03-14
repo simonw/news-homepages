@@ -5,6 +5,7 @@ import subprocess
 
 import click
 import pytz
+from slugify import slugify
 import twitter
 
 
@@ -113,6 +114,11 @@ def bundle(slug):
 
         # Add it to our list
         media_list.append(media_id)
+
+    # Add hashtags
+    slug = slugify(bundle['name'], separator='')
+    date_str = now_local.strftime("%Y%m%d")
+    tweet += f"\n\n#{slug} #{date_str}"
 
     # Make the tweet
     api.PostUpdate(tweet, media=media_list)

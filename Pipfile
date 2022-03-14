@@ -9,6 +9,7 @@ python-twitter = "*"
 click = "*"
 pytz = "*"
 internetarchive = "*"
+python-slugify = "*"
 
 [dev-packages]
 
