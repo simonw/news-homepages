@@ -45,7 +45,7 @@ runs:
 
     - id: shoot
       name: Take screenshot
-      run: pipenv run python shoot.py ${{ inputs.source }}
+      run: pipenv run python shoot.py single ${{ inputs.source }}
       shell: bash
 
     - id: tweet

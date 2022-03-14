@@ -11,9 +11,14 @@ DEFAULT_HEIGHT = "1600"
 DEFAULT_WAIT = "2000"
 
 
-@click.command()
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
 @click.argument('handle')
-def main(handle):
+def single(handle):
     data = HANDLE_LOOKUP[handle]
     subprocess.run([
         "shot-scraper",
@@ -32,4 +37,4 @@ def main(handle):
 
 
 if __name__ == "__main__":
-    main()
+    cli()
