@@ -65,9 +65,6 @@ def bundle(slug):
     bundle = BUNDLE_LOOKUP[slug]
     target_list = [h for h in SOURCE_LIST if h['bundle'] == slug]
 
-    print(bundle)
-    print(target_list)
-
     # Connect to Twitter
     api = twitter.Api(
         consumer_key=os.getenv('TWITTER_CONSUMER_KEY'),
