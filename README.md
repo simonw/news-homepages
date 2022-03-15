@@ -58,4 +58,3 @@ Adding a new site requires that a new row be added to [`sources.csv`](./sources.
 After doing that, you should verify the site works by running the `shoot.py` command and inspecting the result.
 
 Then you should add the site to our schedule by inserting its handle name in the `matrix` of the [GitHub Action workflow](https://github.com/palewire/news-homepages/blob/main/.github/workflows/take-screenshots.yml#L15).
-
