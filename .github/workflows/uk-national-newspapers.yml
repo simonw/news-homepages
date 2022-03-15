@@ -1,4 +1,4 @@
-name: U.S. national newspapers
+name: U.K. national newspapers
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        source: ["nytimes", "wsj"]
+        source: ["ft-uk", "guardian-uk"]
     steps:
       - id: checkout
         name: Checkout

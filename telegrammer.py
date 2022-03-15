@@ -8,9 +8,6 @@ from telegram import Bot
 
 SOURCE_LIST = list(csv.DictReader(open("./sources.csv")))
 SOURCE_LOOKUP = {d["handle"]: d for d in SOURCE_LIST}
-BUNDLE_LIST = list(csv.DictReader(open("./bundles.csv")))
-BUNDLE_LOOKUP = {d["slug"]: d for d in BUNDLE_LIST}
-
 TELEGRAM_API_KEY = os.getenv("TELEGRAM_API_KEY")
 
 
@@ -40,7 +37,7 @@ def cli(handle):
     image_path = f"./{handle}.jpg"
     io = open(image_path, "rb")
 
-    # Make the tweet
+    # Send the photo
     bot.sendPhoto("@newshomepages", io, caption=caption)
 
 
