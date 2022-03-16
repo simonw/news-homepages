@@ -22,7 +22,7 @@ Try a screenshot. The `shoot.py` command, as well as all the other commands, exp
 pipenv run python shoot.py single latimes
 ```
 
-Posting to Twitter and uploading to the Internet Archive require a variety of credentials stored in environment variables. I recommend you create a `.env`  file. There you need to store a Twitter access key and app token that has the permissions necessary to post.
+Posting to Twitter and uploading to the Internet Archive require a variety of credentials stored in environment variables. I recommend you create a `.env` file. There you need to store a Twitter access key and app token that has the permissions necessary to post.
 
 ```
 TWITTER_CONSUMER_KEY=
@@ -57,4 +57,4 @@ Adding a new site requires that a new row be added to [`sources.csv`](./sources.
 
 After doing that, you should verify the site works by running the `shoot.py` command and inspecting the result.
 
-Then you should add the site to our schedule by inserting its handle name in the `matrix` of the [GitHub Action workflow](https://github.com/palewire/news-homepages/blob/main/.github/workflows/take-screenshots.yml#L15).
+Then you should add the site to our schedule by inserting its handle name in the `matrix` of the [GitHub Action workflow](https://github.com/palewire/news-homepages/blob/main/.github/workflows/socal.yml#L15).
