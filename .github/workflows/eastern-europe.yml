@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        source: ["kyivindependent", "meduzaproject"]
+        source: ["kyivindependent", "meduzaproject", "KyivPost", "rianru"]
     steps:
       - id: checkout
         name: Checkout
