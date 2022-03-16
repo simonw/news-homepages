@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        source: ["latimes", "laist", "sdut"]
+        source: ["latimes", "laist", "sdut","vcstar","ocregister","MyDesert","pressenterprise"]
     steps:
       - id: checkout
         name: Checkout
