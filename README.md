@@ -10,6 +10,12 @@ Fork the repository and clone it. Move into the code directory and install the P
 pipenv install --dev
 ```
 
+Install pre-commit hooks.
+
+```bash
+pipenv run pre-commit install
+```
+
 Install the shot-scraper web browser.
 
 ```bash
