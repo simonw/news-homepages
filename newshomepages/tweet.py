@@ -1,4 +1,3 @@
-import csv
 import os
 from datetime import datetime
 
@@ -7,10 +6,7 @@ import pytz
 import twitter
 from slugify import slugify
 
-SOURCE_LIST = list(csv.DictReader(open("./sources.csv")))
-SOURCE_LOOKUP = {d["handle"]: d for d in SOURCE_LIST}
-BUNDLE_LIST = list(csv.DictReader(open("./bundles.csv")))
-BUNDLE_LOOKUP = {d["slug"]: d for d in BUNDLE_LIST}
+from . import utils
 
 
 @click.group()
@@ -24,7 +20,7 @@ def cli():
 def single(handle):
     """Tweet a single source."""
     # Pull the source’s metadata
-    data = SOURCE_LOOKUP[handle]
+    data = utils.get_site(handle)
 
     # Connect to Twitter
     api = twitter.Api(
@@ -61,8 +57,8 @@ def single(handle):
 def bundle(slug):
     """Tweet four sources as a single tweet."""
     # Pull the source metadata
-    bundle = BUNDLE_LOOKUP[slug]
-    target_list = [h for h in SOURCE_LIST if h["bundle"] == slug]
+    bundle = utils.get_bundle(slug)
+    target_list = [h for h in utils.get_site_list() if h["bundle"] == slug]
 
     # Connect to Twitter
     api = twitter.Api(
@@ -86,7 +82,7 @@ def bundle(slug):
     media_list = []
     for i, target in enumerate(target_list):
         # Get the list item
-        emoji = numoji(i + 1)
+        emoji = utils.numoji(i + 1)
         list_item = f"\n{emoji} @{target['handle']}"
 
         # Tack it on the tweet
@@ -118,41 +114,6 @@ def bundle(slug):
 
     # Make the tweet
     api.PostUpdate(tweet, media=media_list)
-
-
-def numoji(number):
-    """Convert a number into a series of emojis for Slack.
-
-    Args:
-        number (int): The number to convert into emoji
-
-    Returns: Am emoji string
-    """
-    # Convert the provided number to a string
-    s = str(number)
-
-    # Split it into a list of tokens, one per number
-    parts = list(s)
-
-    # Create crosswalk between numerals and emojis
-    lookup = {
-        "0": "0️⃣",
-        "1": "1️⃣",
-        "2": "2️⃣",
-        "3": "3️⃣",
-        "4": "4️⃣",
-        "5": "5️⃣",
-        "6": "6️⃣",
-        "7": "7️⃣",
-        "8": "8️⃣",
-        "9": "9️⃣",
-    }
-
-    # Look up each of the tokens in the crosswalk
-    emojis = list(map(lookup.get, parts))
-
-    # Join it all together and return the result
-    return "".join(emojis)
 
 
 if __name__ == "__main__":

@@ -18,10 +18,10 @@ pipenv run shot-scraper install
 
 ### Screenshots
 
-Try a screenshot. The `shoot.py` command, as well as all the other commands, expects you pass in the Twitter handle of the target site. The supported sites are listed in [`sources.csv`](./sources.csv).
+Try a screenshot. The `shoot.py` command, as well as all the other commands, expects you pass in the Twitter handle of the target site. The supported sites are listed in [`newshomepages/sources/sites.csv`](./newshomepages/sources/sites.csv).
 
 ```bash
-pipenv run python shoot.py single latimes
+pipenv run python -m newshomepages.shoot single latimes
 ```
 
 ### Tweeting
@@ -38,7 +38,7 @@ TWITTER_ACCESS_TOKEN_SECRET=
 Now you can post tweets by running the following:
 
 ```bash
-pipenv run python tweet.py single latimes
+pipenv run python -m newshomepages.tweet single latimes
 ```
 
 ### Archiving
@@ -54,12 +54,12 @@ IA_COLLECTION=
 Then you can upload a file by running the following:
 
 ```bash
-pipenv run python archive.py latimes
+pipenv run python -m newshomepages.archive latimes
 ```
 
 ## Adding a site
 
-Adding a new site requires that a new row be added to [`sources.csv`](./sources.csv) with, at a minimum, the handle, URL and timezone of the target. You can also override the system’s defaults by adding optional attributes for the width, height and time delay for the screenshots.
+Adding a new site requires that a new row be added to [`newshomepages/sources/sites.csv`](./newshomepages/sources/sites.csv) with, at a minimum, the handle, URL and timezone of the target. You can also override the system’s defaults by adding optional attributes for the width, height and time delay for the screenshots.
 
 After doing that, you should verify the site works by running the `shoot.py` command and inspecting the result.
 

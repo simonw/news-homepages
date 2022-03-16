@@ -18,6 +18,10 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
 
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
       - id: screenshot
         name: Screenshot
         uses: ./.github/actions/screenshot

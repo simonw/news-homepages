@@ -1,4 +1,3 @@
-import csv
 import os
 from datetime import datetime
 
@@ -6,8 +5,7 @@ import click
 import internetarchive
 import pytz
 
-HANDLE_LIST = csv.DictReader(open("./sources.csv"))
-HANDLE_LOOKUP = {d["handle"]: d for d in HANDLE_LIST}
+from . import utils
 
 IA_ACCESS_KEY = os.getenv("IA_ACCESS_KEY")
 IA_SECRET_KEY = os.getenv("IA_SECRET_KEY")
@@ -19,7 +17,7 @@ IA_COLLECTION = os.getenv("IA_COLLECTION")
 def cli(handle):
     """Archive a screenshot."""
     # Pull the source’s metadata
-    data = HANDLE_LOOKUP[handle]
+    data = utils.get_site(handle)
 
     # Get the timestamp
     now = datetime.now()

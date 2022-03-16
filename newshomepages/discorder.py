@@ -1,14 +1,12 @@
-import csv
-from datetime import datetime
 import os
+from datetime import datetime
 
 import click
 import discord
 import pytz
 
+from . import utils
 
-SOURCE_LIST = list(csv.DictReader(open("./sources.csv", "r")))
-SOURCE_LOOKUP = dict((d['handle'], d) for d in SOURCE_LIST)
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
 
@@ -16,14 +14,17 @@ class BotClient(discord.Client):
     """A chat client that posts the provided handle."""
 
     def __init__(self, data, *args, **kwargs):
+        """Initialize object."""
         super().__init__(*args, **kwargs)
         self.data = data
 
     async def on_ready(self):
+        """Run after we connect to Discord."""
         await self.post()
         await self.close()
 
     async def post(self):
+        """Post message to Discord channel."""
         # Get the channel
         channel = self.get_channel(952969204892573827)
 
@@ -31,7 +32,7 @@ class BotClient(discord.Client):
         now = datetime.now()
 
         # Convert it to local time
-        tz = pytz.timezone(self.data['timezone'])
+        tz = pytz.timezone(self.data["timezone"])
         now_local = now.astimezone(tz)
 
         # Create the caption
@@ -45,10 +46,10 @@ class BotClient(discord.Client):
 
 
 @click.command()
-@click.argument('handle')
+@click.argument("handle")
 def cli(handle):
     """Send a Discord message for a single source."""
-    data = SOURCE_LOOKUP[handle]
+    data = utils.get_site(handle)
     c = BotClient(data)
     c.run(DISCORD_BOT_TOKEN)
 

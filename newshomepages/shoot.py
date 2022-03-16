@@ -1,13 +1,9 @@
-import csv
 import logging
 import subprocess
 
 import click
 
-SOURCE_LIST = list(csv.DictReader(open("./sources.csv")))
-SOURCE_LOOKUP = {d["handle"]: d for d in SOURCE_LIST}
-BUNDLE_LIST = list(csv.DictReader(open("./bundles.csv")))
-BUNDLE_LOOKUP = {d["slug"]: d for d in BUNDLE_LIST}
+from . import utils
 
 DEFAULT_WIDTH = "1300"
 DEFAULT_HEIGHT = "1600"
@@ -26,7 +22,7 @@ def cli():
 @click.argument("handle")
 def single(handle):
     """Screenshot a single source."""
-    data = SOURCE_LOOKUP[handle]
+    data = utils.get_site(handle)
     _shoot(
         data["url"],
         f"{data['handle']}.jpg",
@@ -41,9 +37,8 @@ def single(handle):
 def bundle(slug):
     """Screenshot a bundle of sources."""
     # Pull the source metadata
-    bundle = BUNDLE_LOOKUP[slug]
-    assert isinstance(bundle, dict)
-    target_list = [h for h in SOURCE_LIST if h["bundle"] == slug]
+    bundle = utils.get_bundle(slug)
+    target_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
 
     # Loop through the targets
     for target in target_list:
