@@ -31,10 +31,17 @@ jobs:
           twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
           twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
 
       - id: telegram
         name: Post to Telegram
         uses: ./.github/actions/telegram
         with:
+          source: ${{ matrix.source }}
           telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
+
+      - id: discord
+        name: Post to Discord
+        uses: ./.github/actions/discord
+        with:
+          source: ${{ matrix.source }}
+          discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}

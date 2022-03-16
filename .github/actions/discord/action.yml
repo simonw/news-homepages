@@ -1,0 +1,16 @@
+inputs:
+  source:
+    description: “The site handle to screenshot”
+    required: true
+  discord-bot-token:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - id: discord
+      name: Discord
+      run: pipenv run python -m newshomepages.discorder ${{ inputs.source }}
+      shell: bash
+      env:
+        DISCORD_BOT_TOKEN: ${{ inputs.discord-bot-token }}

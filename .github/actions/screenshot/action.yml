@@ -10,8 +10,6 @@ inputs:
     required: true
   twitter-access-token-secret:
     required: true
-  discord-bot-token:
-    required: true
 
 runs:
   using: "composite"
@@ -30,13 +28,6 @@ runs:
     #        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
     #        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
     #        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
-
-    - id: discord
-      name: Discord
-      run: pipenv run python -m newshomepages.discorder ${{ inputs.source }}
-      shell: bash
-      env:
-        DISCORD_BOT_TOKEN: ${{ inputs.discord-bot-token }}
 
     - id: save
       name: Save artifact
