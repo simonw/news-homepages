@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from pathlib import Path
 
 import click
 import pytz
@@ -17,7 +18,8 @@ def cli():
 
 @cli.command()
 @click.argument("handle")
-def single(handle):
+@click.option("-i", "--input-dir", "input_dir", default="./")
+def single(handle, input_dir):
     """Tweet a single source."""
     # Pull the source’s metadata
     data = utils.get_site(handle)
@@ -41,7 +43,9 @@ def single(handle):
     tweet = f"The @{handle} homepage at {now_local.strftime('%-I:%M %p')} local time"
 
     # Get the image
-    image_path = f"./{handle}.jpg"
+    input_path = Path(input_dir)
+    input_path.mkdir(parents=True, exist_ok=True)
+    image_path = input_path / f"{handle}.jpg"
     io = open(image_path, "rb")
     media_id = api.UploadMediaSimple(io)
 
@@ -54,7 +58,8 @@ def single(handle):
 
 @cli.command()
 @click.argument("slug")
-def bundle(slug):
+@click.option("-i", "--input-dir", "input_dir", default="./")
+def bundle(slug, input_dir):
     """Tweet four sources as a single tweet."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)
@@ -89,7 +94,9 @@ def bundle(slug):
         tweet += list_item
 
         # Get the image
-        image_path = f"./{target['handle']}.jpg"
+        input_path = Path(input_dir)
+        input_path.mkdir(parents=True, exist_ok=True)
+        image_path = input_path / f"{target['handle']}.jpg"
         io = open(image_path, "rb")
         media_id = api.UploadMediaSimple(io)
 

@@ -1,5 +1,6 @@
 import logging
 import subprocess
+from pathlib import Path
 
 import click
 
@@ -20,12 +21,15 @@ def cli():
 
 @cli.command()
 @click.argument("handle")
-def single(handle):
+@click.option("-o", "--output-dir", "output_dir", default="./")
+def single(handle, output_dir):
     """Screenshot a single source."""
     data = utils.get_site(handle)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
     _shoot(
         data["url"],
-        f"{data['handle']}.jpg",
+        output_path / f"{data['handle']}.jpg",
         data["width"] or DEFAULT_WIDTH,
         data["height"] or DEFAULT_HEIGHT,
         data["wait"] or DEFAULT_WAIT,
@@ -34,18 +38,23 @@ def single(handle):
 
 @cli.command()
 @click.argument("slug")
-def bundle(slug):
+@click.option("-o", "--output-dir", "output_dir", default="./")
+def bundle(slug, output_dir):
     """Screenshot a bundle of sources."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)
     target_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+
+    # Set the output path
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
 
     # Loop through the targets
     for target in target_list:
         # Shoot them one by one
         _shoot(
             target["url"],
-            f"{target['handle']}.jpg",
+            output_path / f"{target['handle']}.jpg",
             target["width"] or DEFAULT_WIDTH,
             target["height"] or DEFAULT_HEIGHT,
             target["wait"] or DEFAULT_WAIT,

@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from pathlib import Path
 
 import click
 import pytz
@@ -12,7 +13,8 @@ TELEGRAM_API_KEY = os.getenv("TELEGRAM_API_KEY")
 
 @click.command()
 @click.argument("handle")
-def cli(handle):
+@click.option("-i", "--input-dir", "input_dir", default="./")
+def cli(handle, input_dir):
     """Send a Telegram message for a single source."""
     # Pull the source’s metadata
     data = utils.get_site(handle)
@@ -33,7 +35,9 @@ def cli(handle):
     )
 
     # Get the image
-    image_path = f"./{handle}.jpg"
+    input_path = Path(input_dir)
+    input_path.mkdir(parents=True, exist_ok=True)
+    image_path = input_path / f"{handle}.jpg"
     io = open(image_path, "rb")
 
     # Send the photo
