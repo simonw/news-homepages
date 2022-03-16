@@ -98,7 +98,7 @@ def bundle(slug):
 
         # Convert it to local time
         tz = pytz.timezone(target["timezone"])
-        target_local = now.astimezone(target_now)
+        target_local = target_now.astimezone(tz)
 
         # Add the alt text to the image
         alt_text = f"The @{target['handle']} homepage at {target_local.strftime('%-I:%M %p')} local time"
@@ -110,7 +110,7 @@ def bundle(slug):
     # Add hashtags
     slug = slugify(bundle["name"], separator="")
     date_str = now_local.strftime("%Y%m%d")
-    tweet += f"\n\n#{slug} #{date_str}"
+    tweet += f"\n\n#{slug} #date{date_str}"
 
     # Make the tweet
     api.PostUpdate(tweet, media=media_list)
