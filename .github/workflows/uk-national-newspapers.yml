@@ -7,7 +7,7 @@ on:
 
 jobs:
   run:
-    name: Single screenshots
+    name: Screenshot
     uses: ./.github/workflows/bundle.yml
     with:
       source: uk-national-newspapers
