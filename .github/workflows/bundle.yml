@@ -24,7 +24,7 @@ on:
         description: A Twitter app access token key
         required: true
       twitter-access-token-secret:
-        description: A TWitter app access token secret
+        description: A Twitter app access token secret
         required: true
 
 jobs:
@@ -71,25 +71,26 @@ jobs:
 #          access-token-key: ${{ secrets.twitter-access-token-key }}
 #          access-token-secret: ${{ secrets.twitter-access-token-secret }}
 
-#  telegram:
-#    name: Post to Telegram
-#    needs: [jpg]
-#    runs-on: ubuntu-latest
-#    steps:
-#      - id: checkout
-#        name: Checkout
-#        uses: actions/checkout@v2
+  telegram:
+    name: Post to Telegram
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
 
-#      - id: install
-#        name: Install
-#        uses: ./.github/actions/install
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
 
-#      - id: telegram
-#        name: Post
-#        uses: ./.github/actions/telegram
-#        with:
-#          source: ${{ inputs.source }}
-#          api-key: ${{ secrets.telegram-api-key }}
+      - id: telegram
+        name: Post
+        uses: ./.github/actions/telegram
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+          api-key: ${{ secrets.telegram-api-key }}
 
 #  discord:
 #    name: Post to Discord

@@ -11,11 +11,34 @@ from . import utils
 TELEGRAM_API_KEY = os.getenv("TELEGRAM_API_KEY")
 
 
-@click.command()
+@click.group()
+def cli():
+    """Send a Telegram message."""
+    pass
+
+
+@cli.command()
 @click.argument("handle")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def cli(handle, input_dir):
-    """Send a Telegram message for a single source."""
+def single(handle, input_dir):
+    """Send a single source."""
+    input_path = Path(input_dir)
+    _post(handle, input_path)
+
+
+@cli.command()
+@click.argument("slug")
+@click.option("-i", "--input-dir", "input_dir", default="./")
+def bundle(slug, input_dir):
+    """Send a bundle of sources."""
+    bundle = utils.get_bundle(slug)
+    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+    input_path = Path(input_dir)
+    for handle in handle_list:
+        _post(handle, input_path)
+
+
+def _post(handle, input_dir):
     # Pull the source’s metadata
     data = utils.get_site(handle)
 
@@ -35,10 +58,7 @@ def cli(handle, input_dir):
     )
 
     # Get the image
-    input_path = Path(input_dir)
-    input_path.mkdir(parents=True, exist_ok=True)
-    image_path = input_path / f"{handle}.jpg"
-    io = open(image_path, "rb")
+    io = open(input_dir / f"{handle}.jpg", "rb")
 
     # Send the photo
     bot.sendPhoto("@newshomepages", io, caption=caption)
