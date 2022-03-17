@@ -47,29 +47,29 @@ jobs:
           source: ${{ inputs.source }}
           command: bundle
 
-#  twitter:
-#    name: Post to Twitter
-#    needs: [jpg]
-#    runs-on: ubuntu-latest
-#    steps:
-#      - id: checkout
-#        name: Checkout
-#        uses: actions/checkout@v2
+  twitter:
+    name: Post to Twitter
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
 
-#      - id: install
-#        name: Install
-#        uses: ./.github/actions/install
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
 
-#      - id: tweet
-#        name: Post
-#        uses: ./.github/actions/twitter
-#        with:
-#          source: ${{ matrix.source }}
-#          command: bundle
-#          consumer-key: ${{ secrets.twitter-consumer-key }}
-#          consumer-secret: ${{ secrets.twitter-consumer-secret }}
-#          access-token-key: ${{ secrets.twitter-access-token-key }}
-#          access-token-secret: ${{ secrets.twitter-access-token-secret }}
+      - id: tweet
+        name: Post
+        uses: ./.github/actions/twitter
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+          consumer-key: ${{ secrets.twitter-consumer-key }}
+          consumer-secret: ${{ secrets.twitter-consumer-secret }}
+          access-token-key: ${{ secrets.twitter-access-token-key }}
+          access-token-secret: ${{ secrets.twitter-access-token-secret }}
 
   telegram:
     name: Post to Telegram
