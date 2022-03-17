@@ -2,14 +2,6 @@ inputs:
   source:
     description: “The site handle to screenshot”
     required: true
-  twitter-consumer-key:
-    required: true
-  twitter-consumer-secret:
-    required: true
-  twitter-access-token-key:
-    required: true
-  twitter-access-token-secret:
-    required: true
 
 runs:
   using: "composite"
@@ -18,16 +10,6 @@ runs:
       name: Take screenshot
       run: pipenv run python -m newshomepages.shoot single ${{ inputs.source }} -o _dist
       shell: bash
-
-    #    - id: tweet
-    #      name: Tweet
-    #      run: pipenv run python newshomepages/tweet.py single ${{ inputs.source }} -i _dist
-    #      shell: bash
-    #      env:
-    #        TWITTER_CONSUMER_KEY: ${{ inputs.twitter-consumer-key }}
-    #        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
-    #        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
-    #        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
 
     - id: save
       name: Save artifact
