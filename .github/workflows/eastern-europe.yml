@@ -6,42 +6,15 @@ on:
     - cron: "30 1,13 * * *"
 
 jobs:
-  take-screenshot:
-    name: Take screenshot
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        source: ["kyivindependent", "meduzaproject", "KyivPost", "rianru"]
-    steps:
-      - id: checkout
-        name: Checkout
-        uses: actions/checkout@v2
-
-      - id: install
-        name: Install
-        uses: ./.github/actions/install
-
-      - id: screenshot
-        name: Screenshot
-        uses: ./.github/actions/screenshot
-        with:
-          source: ${{ matrix.source }}
-          twitter-consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-
-      - id: telegram
-        name: Post to Telegram
-        uses: ./.github/actions/telegram
-        with:
-          source: ${{ matrix.source }}
-          telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
-
-      - id: discord
-        name: Post to Discord
-        uses: ./.github/actions/discord
-        with:
-          source: ${{ matrix.source }}
-          discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
+  run:
+    name: Screenshot
+    uses: ./.github/workflows/bundle.yml
+    with:
+      source: eastern-europe
+    secrets:
+      telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
+      discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
+      twitter-consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+      twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
