@@ -32,7 +32,7 @@ pipenv run python -m newshomepages.shoot single latimes
 
 ### Tweeting
 
-Posting to Twitter and uploading to the Internet Archive require a variety of credentials stored in environment variables. I recommend you create a `.env` file. There you need to store a Twitter access key and app token that has the permissions necessary to post.
+Posting to Twitter and other platforms requires a variety of credentials stored in environment variables. I recommend you create a `.env` file. There you need to store a Twitter access key and app token that has the permissions necessary to post.
 
 ```
 TWITTER_CONSUMER_KEY=
@@ -45,6 +45,34 @@ Now you can post tweets by running the following:
 
 ```bash
 pipenv run python -m newshomepages.tweet single latimes
+```
+
+### Telegram
+
+Posting to Telegram requires you add a working API key to the environment.
+
+```
+TELEGRAM_API_KEY=
+```
+
+Then you can post a single site with the following:
+
+```bash
+pipenv run python -m newshomepages.telegrammer latimes
+```
+
+### Discord
+
+Posting to Discord requires you add a working bot token to the environment.
+
+```
+DISCORD_BOT_TOKEN=
+```
+
+Then you can post a single site with the following:
+
+```bash
+pipenv run python -m newshomepages.discorder latimes
 ```
 
 ### Archiving
