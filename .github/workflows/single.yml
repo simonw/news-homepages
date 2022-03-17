@@ -50,32 +50,32 @@ jobs:
           source: ${{ matrix.source }}
           command: single
 
-#  twitter:
-#    name: Post to Twitter
-#    needs: [jpg]
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        source: ${{fromJson(inputs.source)}}
-#    steps:
-#      - id: checkout
-#        name: Checkout
-#        uses: actions/checkout@v2
+  twitter:
+    name: Post to Twitter
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
 
-#      - id: install
-#        name: Install
-#        uses: ./.github/actions/install
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
 
-#      - id: tweet
-#        name: Post
-#        uses: ./.github/actions/tweet
-#        with:
-#          source: ${{ matrix.source }}
-#          command: single
-#          consumer-key: ${{ secrets.twitter-consumer-key }}
-#          consumer-secret: ${{ secrets.twitter-consumer-secret }}
-#          access-token-key: ${{ secrets.twitter-access-token-key }}
-#          access-token-secret: ${{ secrets.twitter-access-token-secret }}
+      - id: tweet
+        name: Post
+        uses: ./.github/actions/tweet
+        with:
+          source: ${{ matrix.source }}
+          command: single
+          consumer-key: ${{ secrets.twitter-consumer-key }}
+          consumer-secret: ${{ secrets.twitter-consumer-secret }}
+          access-token-key: ${{ secrets.twitter-access-token-key }}
+          access-token-secret: ${{ secrets.twitter-access-token-secret }}
 
   telegram:
     name: Post to Telegram
