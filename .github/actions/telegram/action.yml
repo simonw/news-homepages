@@ -8,9 +8,13 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: ${{ inputs.source }}
+
     - id: telegram
       name: Telegram
-      run: pipenv run python -m newshomepages.telegrammer ${{ inputs.source }} -i _dist
+      run: pipenv run python -m newshomepages.telegrammer ${{ inputs.source }}
       shell: bash
       env:
         TELEGRAM_API_KEY: ${{ inputs.telegram-api-key }}
