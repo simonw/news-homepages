@@ -92,22 +92,23 @@ jobs:
           command: bundle
           api-key: ${{ secrets.telegram-api-key }}
 
-#  discord:
-#    name: Post to Discord
-#    needs: [jpg]
-#    runs-on: ubuntu-latest
-#    steps:
-#      - id: checkout
-#        name: Checkout
-#        uses: actions/checkout@v2
+  discord:
+    name: Post to Discord
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
 
-#      - id: install
-#        name: Install
-#        uses: ./.github/actions/install
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
 
-#      - id: discord
-#        name: Post
-#        uses: ./.github/actions/discord
-#        with:
-#          source: ${{ inputs.source }}
-#          bot-token: ${{ secrets.discord-bot-token }}
+      - id: discord
+        name: Post
+        uses: ./.github/actions/discord
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+          bot-token: ${{ secrets.discord-bot-token }}
