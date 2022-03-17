@@ -1,4 +1,4 @@
-name: Single Screenshot
+name: Bundle Screenshot
 
 on:
   workflow_call:

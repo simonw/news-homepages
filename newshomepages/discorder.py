@@ -80,6 +80,7 @@ def _post(handle, input_path):
     data = utils.get_site(handle)
     c = BotClient(data, input_path)
     c.run(DISCORD_BOT_TOKEN)
+    c.close()
 
 
 if __name__ == "__main__":
