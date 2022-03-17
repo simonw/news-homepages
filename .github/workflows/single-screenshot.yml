@@ -12,6 +12,9 @@ jobs:
   take-screenshot:
     name: Take screenshot
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
     steps:
       - id: checkout
         name: Checkout
@@ -25,7 +28,7 @@ jobs:
         name: Screenshot
         uses: ./.github/actions/screenshot
         with:
-          source: ${{ input.source }}
+          source: ${{ matrix.source }}
           twitter-consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
@@ -35,6 +38,9 @@ jobs:
     name: Post to Telegram
     needs: [take-screenshot]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
     steps:
       - id: checkout
         name: Checkout
@@ -48,13 +54,16 @@ jobs:
         name: Post to Telegram
         uses: ./.github/actions/telegram
         with:
-          source: ${{ input.source }}
+          source: ${{ matrix.source }}
           telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
 
   discord:
     name: Post to Discord
     needs: [take-screenshot]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
     steps:
       - id: checkout
         name: Checkout
@@ -68,5 +77,5 @@ jobs:
         name: Post to Discord
         uses: ./.github/actions/discord
         with:
-          source: ${{ input.source }}
+          source: ${{ matrix.source }}
           discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}

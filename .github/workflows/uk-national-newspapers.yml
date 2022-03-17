@@ -9,4 +9,5 @@ jobs:
   run:
     uses: ./.github/workflows/single-screenshot.yml
     with:
-      source: [ft-uk, guardian-uk]
+      source: >-
+        ["ft-uk", "guardian-uk"]
