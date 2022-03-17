@@ -122,4 +122,5 @@ jobs:
         uses: ./.github/actions/discord
         with:
           source: ${{ matrix.source }}
+          command: single
           bot-token: ${{ secrets.discord-bot-token }}
