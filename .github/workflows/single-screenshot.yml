@@ -65,7 +65,7 @@ jobs:
 
   telegram:
     name: Post to Telegram
-    needs: [take-screenshot]
+    needs: [jpg]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -88,7 +88,7 @@ jobs:
 
   discord:
     name: Post to Discord
-    needs: [take-screenshot]
+    needs: [jpg]
     runs-on: ubuntu-latest
     strategy:
       matrix:
