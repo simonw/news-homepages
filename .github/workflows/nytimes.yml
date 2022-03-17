@@ -3,7 +3,7 @@ name: New York Times
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 */8 * * *"
+    - cron: "30 */4 * * *"
 
 jobs:
   run:
