@@ -14,6 +14,18 @@ on:
       discord-bot-token:
         description: A bot token with permission to post to Discord
         required: true
+      twitter-consumer-key:
+        description: A Twitter user consumer key
+        required: true
+      twitter-consumer-secret:
+        description: A Twitter user consumer secret
+        required: true
+      twitter-access-token-key:
+        description: A Twitter app access token key
+        required: true
+      twitter-access-token-secret:
+        description: A TWitter app access token secret
+        required: true
 
 jobs:
   jpg:
