@@ -1,4 +1,4 @@
-name: Wisconsin
+name: California Bay Area
 
 on:
   workflow_dispatch:
