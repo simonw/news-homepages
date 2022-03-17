@@ -2,7 +2,8 @@ inputs:
   source:
     description: “The site handle to screenshot”
     required: true
-  telegram-api-key:
+  api-key:
+    description: An API key with permission to post to Telegram
     required: true
 
 runs:
@@ -17,4 +18,4 @@ runs:
       run: pipenv run python -m newshomepages.telegrammer ${{ inputs.source }}
       shell: bash
       env:
-        TELEGRAM_API_KEY: ${{ inputs.telegram-api-key }}
+        TELEGRAM_API_KEY: ${{ inputs.api-key }}

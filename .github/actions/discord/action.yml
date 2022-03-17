@@ -2,7 +2,7 @@ inputs:
   source:
     description: “The site handle to screenshot”
     required: true
-  discord-bot-token:
+  bot-token:
     description: A bot token with permission to post to Discord
     required: true
 
@@ -18,4 +18,4 @@ runs:
       run: pipenv run python -m newshomepages.discorder ${{ inputs.source }}
       shell: bash
       env:
-        DISCORD_BOT_TOKEN: ${{ inputs.discord-bot-token }}
+        DISCORD_BOT_TOKEN: ${{ inputs.bot-token }}

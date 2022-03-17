@@ -7,10 +7,17 @@ on:
         description: "The site handle to screenshot"
         required: true
         type: string
+    secrets:
+      telegram-api-key:
+        description: An API key with permission to post to Telegram
+        required: true
+      discord-bot-token:
+        description: A bot token with permission to post to Discord
+        required: true
 
 jobs:
-  take-screenshot:
-    name: Screenshot
+  jpg:
+    name: Capture JPG
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,10 +36,32 @@ jobs:
         uses: ./.github/actions/screenshot
         with:
           source: ${{ matrix.source }}
-          twitter-consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+#  twitter:
+#    name: Post to Twitter
+#    needs: [take-screenshot]
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        source: ${{fromJson(inputs.source)}}
+#    steps:
+#      - id: checkout
+#        name: Checkout
+#        uses: actions/checkout@v2
+
+#      - id: install
+#        name: Install
+#        uses: ./.github/actions/install
+
+#      - id: telegram
+#        name: Post
+#        uses: ./.github/actions/twitter
+#        with:
+#          source: ${{ matrix.source }}
+#          twitter-consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+#          twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+#          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+#          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 
   telegram:
     name: Post to Telegram
@@ -51,11 +80,11 @@ jobs:
         uses: ./.github/actions/install
 
       - id: telegram
-        name: Post to Telegram
+        name: Post
         uses: ./.github/actions/telegram
         with:
           source: ${{ matrix.source }}
-          telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
+          api-key: ${{ secrets.telegram-api-key }}
 
   discord:
     name: Post to Discord
@@ -74,8 +103,8 @@ jobs:
         uses: ./.github/actions/install
 
       - id: discord
-        name: Post to Discord
+        name: Post
         uses: ./.github/actions/discord
         with:
           source: ${{ matrix.source }}
-          discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
+          bot-token: ${{ secrets.discord-bot-token }}
