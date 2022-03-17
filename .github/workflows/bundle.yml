@@ -62,7 +62,7 @@ jobs:
 
       - id: tweet
         name: Post
-        uses: ./.github/actions/twitter
+        uses: ./.github/actions/tweet
         with:
           source: ${{ inputs.source }}
           command: bundle
