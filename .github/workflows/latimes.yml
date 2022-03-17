@@ -10,7 +10,7 @@ jobs:
     name: Screenshot
     uses: ./.github/workflows/single.yml
     with:
-      source: ->
+      source: >-
         ["latimes"]
     secrets:
       telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
