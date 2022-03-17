@@ -47,14 +47,35 @@ class BotClient(discord.Client):
         await channel.send(caption, file=discord.File(image_path))
 
 
-@click.command()
+@click.group()
+def cli():
+    """Send a Discord message."""
+    pass
+
+
+@cli.command()
 @click.argument("handle")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def cli(handle, input_dir):
-    """Send a Discord message for a single source."""
-    data = utils.get_site(handle)
+def single(handle, input_dir):
+    """Send a single source."""
     input_path = Path(input_dir)
-    input_path.mkdir(parents=True, exist_ok=True)
+    _post(handle, input_path)
+
+
+@cli.command()
+@click.argument("slug")
+@click.option("-i", "--input-dir", "input_dir", default="./")
+def bundle(slug, input_dir):
+    """Send a bundle of sources."""
+    bundle = utils.get_bundle(slug)
+    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+    input_path = Path(input_dir)
+    for handle in handle_list:
+        _post(handle, input_path)
+
+
+def _post(handle, input_path):
+    data = utils.get_site(handle)
     c = BotClient(data, input_path)
     c.run(DISCORD_BOT_TOKEN)
 
