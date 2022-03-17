@@ -13,6 +13,8 @@ laist,https://laist.com/,LAist,,,,America/Los_Angeles,socal
 sdut,https://www.sandiegouniontribune.com/,San Diego Union Tribune,,,,America/Los_Angeles,socal
 ft-uk,https://ft.com/?edition=uk,Financial Times,,,,Europe/London,uk-national-newspapers
 guardian-uk,https://theguardian.com/uk,The Guardian,,,,Europe/London,uk-national-newspapers
+TheSun,https://www.thesun.co.uk/,The Sun,,,5000,Europe/London,uk-national-newspapers
+Independent,https://www.independent.co.uk/,The Independent,,,,Europe/London,uk-national-newspapers
 ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
 abqbizfirst,https://www.bizjournals.com/albuquerque/,Albuquerque Business First,,2000,,America/Denver,newmexico
 thenewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,2000,,America/Denver,newmexico
