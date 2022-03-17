@@ -45,6 +45,10 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
 
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
       - id: telegram
         name: Post to Telegram
         uses: ./.github/actions/telegram
@@ -64,6 +68,10 @@ jobs:
       - id: checkout
         name: Checkout
         uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
 
       - id: discord
         name: Post to Discord
