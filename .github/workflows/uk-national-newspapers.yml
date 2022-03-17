@@ -8,10 +8,9 @@ on:
 jobs:
   run:
     name: Single screenshots
-    uses: ./.github/workflows/single-screenshot.yml
+    uses: ./.github/workflows/bundle.yml
     with:
-      source: >-
-        ["ft-uk", "guardian-uk"]
+      source: uk-national-newspapers
     secrets:
       telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
       discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}

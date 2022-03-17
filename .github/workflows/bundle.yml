@@ -1,0 +1,112 @@
+name: Single Screenshot
+
+on:
+  workflow_call:
+    inputs:
+      source:
+        description: "The bundle slug to screenshot"
+        required: true
+        type: string
+    secrets:
+      telegram-api-key:
+        description: An API key with permission to post to Telegram
+        required: true
+      discord-bot-token:
+        description: A bot token with permission to post to Discord
+        required: true
+      twitter-consumer-key:
+        description: A Twitter user consumer key
+        required: true
+      twitter-consumer-secret:
+        description: A Twitter user consumer secret
+        required: true
+      twitter-access-token-key:
+        description: A Twitter app access token key
+        required: true
+      twitter-access-token-secret:
+        description: A TWitter app access token secret
+        required: true
+
+jobs:
+  jpg:
+    name: Capture JPG
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: screenshot
+        name: Screenshot
+        uses: ./.github/actions/screenshot
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+
+#  twitter:
+#    name: Post to Twitter
+#    needs: [jpg]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - id: checkout
+#        name: Checkout
+#        uses: actions/checkout@v2
+
+#      - id: install
+#        name: Install
+#        uses: ./.github/actions/install
+
+#      - id: tweet
+#        name: Post
+#        uses: ./.github/actions/twitter
+#        with:
+#          source: ${{ matrix.source }}
+#          command: bundle
+#          consumer-key: ${{ secrets.twitter-consumer-key }}
+#          consumer-secret: ${{ secrets.twitter-consumer-secret }}
+#          access-token-key: ${{ secrets.twitter-access-token-key }}
+#          access-token-secret: ${{ secrets.twitter-access-token-secret }}
+
+#  telegram:
+#    name: Post to Telegram
+#    needs: [jpg]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - id: checkout
+#        name: Checkout
+#        uses: actions/checkout@v2
+
+#      - id: install
+#        name: Install
+#        uses: ./.github/actions/install
+
+#      - id: telegram
+#        name: Post
+#        uses: ./.github/actions/telegram
+#        with:
+#          source: ${{ inputs.source }}
+#          api-key: ${{ secrets.telegram-api-key }}
+
+#  discord:
+#    name: Post to Discord
+#    needs: [jpg]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - id: checkout
+#        name: Checkout
+#        uses: actions/checkout@v2
+
+#      - id: install
+#        name: Install
+#        uses: ./.github/actions/install
+
+#      - id: discord
+#        name: Post
+#        uses: ./.github/actions/discord
+#        with:
+#          source: ${{ inputs.source }}
+#          bot-token: ${{ secrets.discord-bot-token }}
