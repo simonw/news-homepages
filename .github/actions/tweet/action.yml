@@ -17,9 +17,13 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: ${{ inputs.source }}
+
     - id: tweet
       name: Tweet
-      run: pipenv run python newshomepages/tweet.py ${{ inputs.command }} ${{ inputs.source }} -i _dist
+      run: pipenv run python newshomepages/tweet.py ${{ inputs.command }} ${{ inputs.source }}
       shell: bash
       env:
         TWITTER_CONSUMER_KEY: ${{ inputs.consumer-key }}
