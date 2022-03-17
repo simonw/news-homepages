@@ -68,7 +68,9 @@ def single(handle, input_dir):
 def bundle(slug, input_dir):
     """Send a bundle of sources."""
     bundle = utils.get_bundle(slug)
-    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+    handle_list = [
+        h["handle"] for h in utils.get_site_list() if h["bundle"] == bundle["slug"]
+    ]
     input_path = Path(input_dir)
     for handle in handle_list:
         _post(handle, input_path)
