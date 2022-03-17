@@ -2,13 +2,16 @@ inputs:
   source:
     description: “The site handle to screenshot”
     required: true
+  command:
+    description: "The tweet.py command to run"
+    required: true
 
 runs:
   using: "composite"
   steps:
     - id: shoot
       name: Take screenshot
-      run: pipenv run python -m newshomepages.shoot single ${{ inputs.source }} -o _dist
+      run: pipenv run python -m newshomepages.shoot ${{ inputs.command }} ${{ inputs.source }} -o _dist
       shell: bash
 
     - id: save

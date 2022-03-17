@@ -36,10 +36,11 @@ jobs:
         uses: ./.github/actions/screenshot
         with:
           source: ${{ matrix.source }}
+          command: single
 
 #  twitter:
 #    name: Post to Twitter
-#    needs: [take-screenshot]
+#    needs: [jpg]
 #    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
@@ -53,15 +54,16 @@ jobs:
 #        name: Install
 #        uses: ./.github/actions/install
 
-#      - id: telegram
+#      - id: tweet
 #        name: Post
 #        uses: ./.github/actions/twitter
 #        with:
 #          source: ${{ matrix.source }}
-#          twitter-consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-#          twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-#          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-#          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+#          command: single
+#          consumer-key: ${{ secrets.twitter-consumer-key }}
+#          consumer-secret: ${{ secrets.twitter-consumer-secret }}
+#          access-token-key: ${{ secrets.twitter-access-token-key }}
+#          access-token-secret: ${{ secrets.twitter-access-token-secret }}
 
   telegram:
     name: Post to Telegram

@@ -1,14 +1,17 @@
 inputs:
   source:
-    description: “The site handle to screenshot”
+    description: "The site handle to screenshot"
     required: true
-  twitter-consumer-key:
+  command:
+    description: "The tweet.py command to run"
     required: true
-  twitter-consumer-secret:
+  consumer-key:
     required: true
-  twitter-access-token-key:
+  consumer-secret:
     required: true
-  twitter-access-token-secret:
+  access-token-key:
+    required: true
+  access-token-secret:
     required: true
 
 runs:
@@ -16,10 +19,10 @@ runs:
   steps:
     - id: tweet
       name: Tweet
-      run: pipenv run python newshomepages/tweet.py single ${{ inputs.source }} -i _dist
+      run: pipenv run python newshomepages/tweet.py ${{ inputs.command }} ${{ inputs.source }} -i _dist
       shell: bash
       env:
-        TWITTER_CONSUMER_KEY: ${{ inputs.twitter-consumer-key }}
-        TWITTER_CONSUMER_SECRET: ${{ inputs.twitter-consumer-secret }}
-        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.twitter-access-token-key }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.twitter-access-token-secret }}
+        TWITTER_CONSUMER_KEY: ${{ inputs.consumer-key }}
+        TWITTER_CONSUMER_SECRET: ${{ inputs.consumer-secret }}
+        TWITTER_ACCESS_TOKEN_KEY: ${{ inputs.access-token-key }}
+        TWITTER_ACCESS_TOKEN_SECRET: ${{ inputs.access-token-secret }}
