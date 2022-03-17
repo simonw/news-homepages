@@ -10,7 +10,7 @@ runs:
   steps:
     - id: discord
       name: Discord
-      run: pipenv run python -m newshomepages.discorder ${{ inputs.source }}
+      run: pipenv run python -m newshomepages.discorder ${{ inputs.source }} -i _dist
       shell: bash
       env:
         DISCORD_BOT_TOKEN: ${{ inputs.discord-bot-token }}

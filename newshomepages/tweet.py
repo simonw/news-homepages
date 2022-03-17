@@ -80,8 +80,10 @@ def bundle(slug, input_dir):
     tz = pytz.timezone(bundle["timezone"])
     now_local = now.astimezone(tz)
 
-    # Create the headline
-    tweet = f"{bundle['name']} homepages at {now_local.strftime('%-I:%M %p')} in {bundle['location']}\n"
+    # Set hashtags
+    slug = slugify(bundle["name"], separator="")
+    date_str = now_local.strftime("%Y%m%d")
+    hashtags = f"#{slug} #date{date_str}"
 
     # Loop through all the targets
     media_list = []
@@ -89,9 +91,6 @@ def bundle(slug, input_dir):
         # Get the list item
         emoji = utils.numoji(i + 1)
         list_item = f"\n{emoji} @{target['handle']}"
-
-        # Tack it on the tweet
-        tweet += list_item
 
         # Get the image
         input_path = Path(input_dir)
@@ -112,15 +111,32 @@ def bundle(slug, input_dir):
         api.PostMediaMetadata(media_id, alt_text)
 
         # Add it to our list
-        media_list.append(media_id)
+        media_list.append([list_item, media_id])
 
-    # Add hashtags
-    slug = slugify(bundle["name"], separator="")
-    date_str = now_local.strftime("%Y%m%d")
-    tweet += f"\n\n#{slug} #date{date_str}"
+    chunk_list = utils.chunk(media_list, 4)
+    parent_status_id = None
+    for i, chunk in enumerate(chunk_list):
+        # Set the headline, if it's the first tweet in the thread
+        if i == 0:
+            tweet = f"{bundle['name']} homepages at {now_local.strftime('%-I:%M %p')} in {bundle['location']}\n"
+        else:
+            tweet = ""
 
-    # Make the tweet
-    api.PostUpdate(tweet, media=media_list)
+        # Build the lists
+        media_list = []
+        for list_item, media_id in chunk:
+            tweet += list_item
+            media_list.append(media_id)
+        tweet += f"\n\n{hashtags}"
+
+        # Make the tweet
+        if i == 0:
+            status = api.PostUpdate(tweet, media=media_list)
+        else:
+            status = api.PostUpdate(
+                tweet, media=media_list, in_reply_to_status_id=parent_status_id
+            )
+        parent_status_id = status.id
 
 
 if __name__ == "__main__":

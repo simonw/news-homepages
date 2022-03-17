@@ -91,3 +91,19 @@ def numoji(number: int) -> str:
 
     # Join it all together and return the result
     return "".join(emoji_list)
+
+
+def chunk(iterable: typing.List, length: int) -> typing.List[typing.List]:
+    """Split the provided list into chunks of the provided length.
+
+    Args:
+        iterable (list): The master list to split.
+        length (int): The size of the chunks you want
+
+    Returns a list of lists.
+    """
+    chunk_list = []
+    for i in range(0, len(iterable), length):
+        chunk = iterable[i : i + length]
+        chunk_list.append(chunk)
+    return chunk_list
