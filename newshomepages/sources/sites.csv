@@ -11,6 +11,7 @@ meduzaproject,https://meduza.io/,Meduza,,1800,4000,Europe/Riga,eastern-europe
 KyivPost,https://www.kyivpost.com/,KyivPost,,,,Europe/Kiev,eastern-europe
 rianru,https://ria.ru/,RIA Novosti,,,,Europe/Moscow,eastern-europe
 laist,https://laist.com/,LAist,,,,America/Los_Angeles,socal
+kpcc,https://www.kpcc.org/,KPCC,,,,America/Los_Angeles,socal
 sdut,https://www.sandiegouniontribune.com/,San Diego Union Tribune,,,,America/Los_Angeles,socal
 ft,https://ft.com/?edition=uk,Financial Times,,,,Europe/London,uk-national-newspapers
 guardian,https://theguardian.com/uk,The Guardian,,,,Europe/London,uk-national-newspapers
@@ -38,3 +39,4 @@ vcstar,https://www.vcstar.com/,Ventura County Star,,2000,,America/Los_Angeles,so
 ocregister,https://www.ocregister.com/,Orange County Register,,2000,,America/Los_Angeles,socal
 MyDesert,https://www.desertsun.com/,The Desert Sun,,2000,,America/Los_Angeles,socal
 pressenterprise,https://www.pe.com/,Riverside Press-Enterprise,,2000,,America/Los_Angeles,socal
+KnockDotLA,https://knock-la.com/,Knock.LA,,,,America/Los_Angeles,socal
