@@ -24,7 +24,7 @@ on:
         description: A Twitter app access token key
         required: true
       twitter-access-token-secret:
-        description: A TWitter app access token secret
+        description: A Twitter app access token secret
         required: true
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
 
 #      - id: tweet
 #        name: Post
-#        uses: ./.github/actions/twitter
+#        uses: ./.github/actions/tweet
 #        with:
 #          source: ${{ matrix.source }}
 #          command: single
