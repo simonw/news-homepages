@@ -24,15 +24,31 @@ def cli():
 @click.option("-o", "--output-dir", "output_dir", default="./")
 def single(handle, output_dir):
     """Screenshot a single source."""
+    # Get metadata
     data = utils.get_site(handle)
+
+    # Set the output path
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
+
+    # Check if there's an optional javascript file to include
+    this_dir = Path(__file__).parent
+    javascript_path = this_dir / "sources" / "javascript" / f"{data['handle']}.js"
+    if javascript_path.exists():
+        click.echo(f"Including javascript overrides at {javascript_path}")
+        with open(javascript_path) as fh:
+            javascript = fh.read()
+    else:
+        javascript = None
+
+    # Shoot the shot
     _shoot(
         data["url"],
         output_path / f"{data['handle']}.jpg",
         data["width"] or DEFAULT_WIDTH,
         data["height"] or DEFAULT_HEIGHT,
         data["wait"] or DEFAULT_WAIT,
+        javascript,
     )
 
 
@@ -52,33 +68,44 @@ def bundle(slug, output_dir):
     # Loop through the targets
     for target in target_list:
         # Shoot them one by one
+        # Check if there's an optional javascript file to include
+        this_dir = Path(__file__).parent
+        javascript_path = this_dir / "sources" / "javascript" / f"{target['handle']}.js"
+        if javascript_path.exists():
+            click.echo(f"Including javascript overrides at {javascript_path}")
+            with open(javascript_path) as fh:
+                javascript = fh.read()
+        else:
+            javascript = None
         _shoot(
             target["url"],
             output_path / f"{target['handle']}.jpg",
             target["width"] or DEFAULT_WIDTH,
             target["height"] or DEFAULT_HEIGHT,
             target["wait"] or DEFAULT_WAIT,
+            javascript,
         )
 
 
-def _shoot(url, output, width, height, wait):
+def _shoot(url, output, width, height, wait, javascript=None):
     logger.debug(f"Shooting {url}")
-    subprocess.run(
-        [
-            "shot-scraper",
-            url,
-            "-o",
-            output,
-            "--quality",
-            "80",
-            "--width",
-            width,
-            "--height",
-            height,
-            "--wait",
-            wait,
-        ]
-    )
+    command_list = [
+        "shot-scraper",
+        url,
+        "-o",
+        output,
+        "--quality",
+        "80",
+        "--width",
+        width,
+        "--height",
+        height,
+        "--wait",
+        wait,
+    ]
+    if javascript:
+        command_list.extend(["--javascript", javascript])
+    subprocess.run(command_list)
 
 
 if __name__ == "__main__":
