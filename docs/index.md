@@ -13,3 +13,10 @@ installation
 usage
 adding
 ```
+
+## Links
+
+- Twitter: [@newshomepages](https://twitter.com/newshomepages)
+- Telegram: [newshomepages](https://t.me/newshomepages)
+- Code: [github.com/palewire/news-homepages](https://github.com/palewire/news-homepages)
+- Issues: [github.com/palewire/news-homepages/issues](https://github.com/palewire/news-homepages/issues)
