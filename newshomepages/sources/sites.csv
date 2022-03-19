@@ -26,10 +26,10 @@ ft,https://ft.com/?edition=uk,Financial Times,,,,Europe/London,uk-national-news
 guardian,https://theguardian.com/uk,The Guardian,,,,Europe/London,uk-national-news
 Independent,https://www.independent.co.uk/,The Independent,,,,Europe/London,uk-national-news
 Telegraph,https://www.telegraph.co.uk/,The Telegraph,,,,Europe/London,uk-national-news
-nytimes,https://www.nytimes.com,New York Times,,,,America/New_York,uk-national-news
+nytimes,https://www.nytimes.com,New York Times,,,,America/New_York,us-national-newspapers
 TheSun,https://www.thesun.co.uk/,The Sun,,,5000,Europe/London,uk-national-news
-USATODAY,https://www.usatoday.com/,USA Today,,2000,,America/New_York,uk-national-news
-wsj,https://www.wsj.com/,Wall Street Journal,,2000,,America/New_York,uk-national-news
+USATODAY,https://www.usatoday.com/,USA Today,,2000,,America/New_York,us-national-newspapers
+wsj,https://www.wsj.com/,Wall Street Journal,,2000,,America/New_York,us-national-newspapers
 cnn,https://www.cnn.com/,CNN,,,,US/Eastern,us-national-television
 foxnews,https://www.foxnews.com/,Fox News,,,,America/New_York,us-national-television
 msnbc,https://www.msnbc.com/,MSNBC,,,,America/New_York,us-national-television
