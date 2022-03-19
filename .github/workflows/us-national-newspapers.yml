@@ -1,4 +1,4 @@
-name: U.S. national news
+name: U.S. national newspapers
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ jobs:
     name: Screenshot
     uses: ./.github/workflows/bundle.yml
     with:
-      source: us-national-news
+      source: us-national-newspapers
     secrets:
       telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
       discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
