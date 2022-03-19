@@ -1,42 +1,43 @@
 handle,url,name,width,height,wait,timezone,bundle
-latimes,https://www.latimes.com,Los Angeles Times,,2000,,America/Los_Angeles,socal
-nytimes,https://www.nytimes.com,New York Times,,,,America/New_York,us-national-newspapers
-cnn,https://www.cnn.com/,CNN,,,,US/Eastern,us-national-television
-wsj,https://www.wsj.com/,Wall Street Journal,,2000,,America/New_York,us-national-newspapers
-foxnews,https://www.foxnews.com/,Fox News,,,,America/New_York,us-national-television
-msnbc,https://www.msnbc.com/,MSNBC,,,,America/New_York,us-national-television
-kyivindependent,https://kyivindependent.com/,Kyiv Independent,,,,Europe/Kiev,eastern-europe
-bbc,https://www.bbc.com/news,BBC,,,,Europe/London,
-meduzaproject,https://meduza.io/,Meduza,,1800,4000,Europe/Riga,eastern-europe
-KyivPost,https://www.kyivpost.com/,KyivPost,,,,Europe/Kiev,eastern-europe
-rianru,https://ria.ru/,RIA Novosti,,,,Europe/Moscow,eastern-europe
-laist,https://laist.com/,LAist,,,,America/Los_Angeles,socal
-kpcc,https://www.kpcc.org/,KPCC,,,,America/Los_Angeles,socal
-sdut,https://www.sandiegouniontribune.com/,San Diego Union Tribune,,,,America/Los_Angeles,socal
-ft,https://ft.com/?edition=uk,Financial Times,,,,Europe/London,uk-national-newspapers
-guardian,https://theguardian.com/uk,The Guardian,,,,Europe/London,uk-national-newspapers
-TheSun,https://www.thesun.co.uk/,The Sun,,,5000,Europe/London,uk-national-newspapers
-Independent,https://www.independent.co.uk/,The Independent,,,,Europe/London,uk-national-newspapers
-ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
-abqbizfirst,https://www.bizjournals.com/albuquerque/,Albuquerque Business First,,2000,,America/Denver,newmexico
-thenewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,2000,,America/Denver,newmexico
-source_nm,https://sourcenm.com/,Source New Mexico,,2000,,America/Denver,newmexico
-CrucesSunNews,https://www.lcsun-news.com/,Las Cruces Sun News,,2000,,America/Denver,newmexico
-WiStateJournal,https://madison.com/wsj/, Wisconsin State Journal,,2000,,America/Chicago,wisconsin
-journalsentinel,https://www.jsonline.com/,Milwaukee Journal Sentinel,,2000,,America/Chicago,wisconsin
-PostCrescent,https://www.postcrescent.com/,Appleton Post Crescent,,2000,,America/Chicago,wisconsin
-LaCrosseTribune,https://lacrossetribune.com/,LaCrosse Tribune,,2000,,America/Chicago,wisconsin
-leadertelegram,https://www.leadertelegram.com/,Eau Claire Leader-Telegram,,2000,,America/Chicago,wisconsin
-StevensPointJrl,https://www.stevenspointjournal.com/,Stevens Point Journal,,2000,,America/Chicago,wisconsin
-wausauherald,https://www.wausaudailyherald.com/,Wausau Daily Herald,,2000,,America/Chicago,wisconsin
-gbpressgazette,https://www.greenbaypressgazette.com/,Green Bay Press-Gazette,,2000,,America/Chicago,wisconsin
-mercnews,https://www.mercurynews.com/,Mercury News,,,,America/Los_Angeles,bay-area
-Oaklandside,https://oaklandside.org/,The Oaklandside,,2000,,America/Los_Angeles,bay-area
 Berkeleyside,https://berkeleyside.org/,The Bekerleyside,,,,America/Los_Angeles,bay-area
 EastBayTimes,https://www.eastbaytimes.com/,East Bay Times,,,,America/Los_Angeles,bay-area
-vcstar,https://www.vcstar.com/,Ventura County Star,,2000,,America/Los_Angeles,socal
-ocregister,https://www.ocregister.com/,Orange County Register,,2000,,America/Los_Angeles,socal
-MyDesert,https://www.desertsun.com/,The Desert Sun,,2000,,America/Los_Angeles,socal
-pressenterprise,https://www.pe.com/,Riverside Press-Enterprise,,2000,,America/Los_Angeles,socal
+mercnews,https://www.mercurynews.com/,Mercury News,,,,America/Los_Angeles,bay-area
+Oaklandside,https://oaklandside.org/,The Oaklandside,,2000,,America/Los_Angeles,bay-area
+kyivindependent,https://kyivindependent.com/,Kyiv Independent,,,,Europe/Kiev,eastern-europe
+KyivPost,https://www.kyivpost.com/,KyivPost,,,,Europe/Kiev,eastern-europe
+meduzaproject,https://meduza.io/,Meduza,,1800,4000,Europe/Riga,eastern-europe
+rianru,https://ria.ru/,RIA Novosti,,,,Europe/Moscow,eastern-europe
+abqbizfirst,https://www.bizjournals.com/albuquerque/,Albuquerque Business First,,2000,,America/Denver,newmexico
+ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
+CrucesSunNews,https://www.lcsun-news.com/,Las Cruces Sun News,,2000,,America/Denver,newmexico
+source_nm,https://sourcenm.com/,Source New Mexico,,2000,,America/Denver,newmexico
+thenewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,2000,,America/Denver,newmexico
 KnockDotLA,https://knock-la.com/,Knock.LA,,,,America/Los_Angeles,socal
-USATODAY,https://www.usatoday.com/,USA Today,,2000,,America/New_York,us-national-newspapers
+kpcc,https://www.kpcc.org/,KPCC,,,,America/Los_Angeles,socal
+laist,https://laist.com/,LAist,,,,America/Los_Angeles,socal
+latimes,https://www.latimes.com,Los Angeles Times,,2000,,America/Los_Angeles,socal
+MyDesert,https://www.desertsun.com/,The Desert Sun,,2000,,America/Los_Angeles,socal
+ocregister,https://www.ocregister.com/,Orange County Register,,2000,,America/Los_Angeles,socal
+pressenterprise,https://www.pe.com/,Riverside Press-Enterprise,,2000,,America/Los_Angeles,socal
+sdut,https://www.sandiegouniontribune.com/,San Diego Union Tribune,,,,America/Los_Angeles,socal
+vcstar,https://www.vcstar.com/,Ventura County Star,,2000,,America/Los_Angeles,socal
+bbc,https://www.bbc.com/news,BBC,,,,Europe/London,uk-national-news
+ft,https://ft.com/?edition=uk,Financial Times,,,,Europe/London,uk-national-news
+guardian,https://theguardian.com/uk,The Guardian,,,,Europe/London,uk-national-news
+Independent,https://www.independent.co.uk/,The Independent,,,,Europe/London,uk-national-news
+Telegraph,https://www.telegraph.co.uk/,The Telegraph,,,,Europe/London,uk-national-news
+nytimes,https://www.nytimes.com,New York Times,,,,America/New_York,uk-national-news
+TheSun,https://www.thesun.co.uk/,The Sun,,,5000,Europe/London,uk-national-news
+USATODAY,https://www.usatoday.com/,USA Today,,2000,,America/New_York,uk-national-news
+wsj,https://www.wsj.com/,Wall Street Journal,,2000,,America/New_York,uk-national-news
+cnn,https://www.cnn.com/,CNN,,,,US/Eastern,us-national-television
+foxnews,https://www.foxnews.com/,Fox News,,,,America/New_York,us-national-television
+msnbc,https://www.msnbc.com/,MSNBC,,,,America/New_York,us-national-television
+gbpressgazette,https://www.greenbaypressgazette.com/,Green Bay Press-Gazette,,2000,,America/Chicago,wisconsin
+journalsentinel,https://www.jsonline.com/,Milwaukee Journal Sentinel,,2000,,America/Chicago,wisconsin
+LaCrosseTribune,https://lacrossetribune.com/,LaCrosse Tribune,,2000,,America/Chicago,wisconsin
+leadertelegram,https://www.leadertelegram.com/,Eau Claire Leader-Telegram,,2000,,America/Chicago,wisconsin
+PostCrescent,https://www.postcrescent.com/,Appleton Post Crescent,,2000,,America/Chicago,wisconsin
+StevensPointJrl,https://www.stevenspointjournal.com/,Stevens Point Journal,,2000,,America/Chicago,wisconsin
+wausauherald,https://www.wausaudailyherald.com/,Wausau Daily Herald,,2000,,America/Chicago,wisconsin
+WiStateJournal,https://madison.com/wsj/, Wisconsin State Journal,,2000,,America/Chicago,wisconsin

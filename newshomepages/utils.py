@@ -40,7 +40,7 @@ def get_site(handle: typing.AnyStr) -> typing.Dict:
     Returns a dictionary.
     """
     site_list = get_site_list()
-    return next(d for d in site_list if d["handle"] == handle)
+    return next(d for d in site_list if d["handle"].lower() == handle.lower())
 
 
 def get_bundle(slug: str) -> typing.Dict:
@@ -52,7 +52,7 @@ def get_bundle(slug: str) -> typing.Dict:
     Returns a dictionary.
     """
     bundle_list = get_bundle_list()
-    return next(d for d in bundle_list if d["slug"] == slug)
+    return next(d for d in bundle_list if d["slug"].lower() == slug.lower())
 
 
 def numoji(number: int) -> str:

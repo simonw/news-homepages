@@ -8,7 +8,7 @@ from . import utils
 
 DEFAULT_WIDTH = "1300"
 DEFAULT_HEIGHT = "1600"
-DEFAULT_WAIT = "2000"
+DEFAULT_WAIT = "5000"
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,9 @@ def single(handle, output_dir):
 
     # Check if there's an optional javascript file to include
     this_dir = Path(__file__).parent
-    javascript_path = this_dir / "sources" / "javascript" / f"{data['handle']}.js"
+    javascript_path = (
+        this_dir / "sources" / "javascript" / f"{data['handle'].lower()}.js"
+    )
     if javascript_path.exists():
         click.echo(f"Including javascript overrides at {javascript_path}")
         with open(javascript_path) as fh:
@@ -88,7 +90,7 @@ def bundle(slug, output_dir):
 
 
 def _shoot(url, output, width, height, wait, javascript=None):
-    logger.debug(f"Shooting {url}")
+    click.echo(f"Shooting {url}")
     command_list = [
         "shot-scraper",
         url,
