@@ -72,7 +72,9 @@ def bundle(slug, output_dir):
         # Shoot them one by one
         # Check if there's an optional javascript file to include
         this_dir = Path(__file__).parent
-        javascript_path = this_dir / "sources" / "javascript" / f"{target['handle']}.js"
+        javascript_path = (
+            this_dir / "sources" / "javascript" / f"{target['handle'].lower()}.js"
+        )
         if javascript_path.exists():
             click.echo(f"Including javascript overrides at {javascript_path}")
             with open(javascript_path) as fh:
