@@ -23,7 +23,7 @@ Here’s a generic example that would hide any elements with the id of `ad_unit`
 
 ```javascript
 document.querySelectorAll(
-  '#ad_unit' <-- Pull your page’s identifiers here. If there's more than one thing to target you can comma seperate them.
+  '#ad_unit' // <-- Pull your page’s identifiers here. If there's more than one thing to target you can comma seperate them.
 ).forEach(el => el.style.display = 'none')
 ```
 
