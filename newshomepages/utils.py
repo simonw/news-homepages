@@ -55,6 +55,22 @@ def get_bundle(slug: str) -> typing.Dict:
     return next(d for d in bundle_list if d["slug"].lower() == slug.lower())
 
 
+def get_javascript(handle: str) -> typing.Optional[str]:
+    """Get the JavaScript file to run before the screenshot, if it exists.
+
+    Args:
+        handle (str): The Twitter handle of the site you want.
+
+    Returns a JavaScript string ready to be run. Or None, if no file exists.
+    """
+    javascript_path = SOURCES_PATH / "javascript" / f"{handle.lower()}.js"
+    if javascript_path.exists():
+        with open(javascript_path) as fh:
+            return fh.read()
+    else:
+        return None
+
+
 def numoji(number: int) -> str:
     """Convert a number into a series of emojis for Slack.
 

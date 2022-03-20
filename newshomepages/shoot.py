@@ -31,18 +31,6 @@ def single(handle, output_dir):
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Check if there's an optional javascript file to include
-    this_dir = Path(__file__).parent
-    javascript_path = (
-        this_dir / "sources" / "javascript" / f"{data['handle'].lower()}.js"
-    )
-    if javascript_path.exists():
-        click.echo(f"Including javascript overrides at {javascript_path}")
-        with open(javascript_path) as fh:
-            javascript = fh.read()
-    else:
-        javascript = None
-
     # Shoot the shot
     _shoot(
         data["url"],
@@ -50,7 +38,7 @@ def single(handle, output_dir):
         data["width"] or DEFAULT_WIDTH,
         data["height"] or DEFAULT_HEIGHT,
         data["wait"] or DEFAULT_WAIT,
-        javascript,
+        javascript=utils.get_javascript(data["handle"]),
     )
 
 
@@ -70,24 +58,13 @@ def bundle(slug, output_dir):
     # Loop through the targets
     for target in target_list:
         # Shoot them one by one
-        # Check if there's an optional javascript file to include
-        this_dir = Path(__file__).parent
-        javascript_path = (
-            this_dir / "sources" / "javascript" / f"{target['handle'].lower()}.js"
-        )
-        if javascript_path.exists():
-            click.echo(f"Including javascript overrides at {javascript_path}")
-            with open(javascript_path) as fh:
-                javascript = fh.read()
-        else:
-            javascript = None
         _shoot(
             target["url"],
             output_path / f"{target['handle']}.jpg",
             target["width"] or DEFAULT_WIDTH,
             target["height"] or DEFAULT_HEIGHT,
             target["wait"] or DEFAULT_WAIT,
-            javascript,
+            javascript=utils.get_javascript(target["handle"]),
         )
 
 
