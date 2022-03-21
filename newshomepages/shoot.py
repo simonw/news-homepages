@@ -1,6 +1,8 @@
 import logging
 import subprocess
 from pathlib import Path
+import tempfile
+import yaml
 
 import click
 
@@ -32,14 +34,25 @@ def single(handle, output_dir):
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Shoot the shot
-    _shoot(
+    command_list = [
+        "shot-scraper",
         data["url"],
+        "-o",
         output_path / f"{data['handle']}.jpg",
+        "--quality",
+        "80",
+        "--width",
         data["width"] or DEFAULT_WIDTH,
+        "--height",
         data["height"] or DEFAULT_HEIGHT,
+        "--wait",
         data["wait"] or DEFAULT_WAIT,
-        javascript=utils.get_javascript(data["handle"]),
-    )
+    ]
+    javascript = utils.get_javascript(data["handle"])
+    if javascript:
+        command_list.extend(["--javascript", javascript])
+    click.echo(f"Shooting {data['url']}")
+    subprocess.run(command_list)
 
 
 @cli.command()
@@ -49,43 +62,42 @@ def bundle(slug, output_dir):
     """Screenshot a bundle of sources."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)
-    target_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
 
     # Set the output path
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Loop through the targets
-    for target in target_list:
-        # Shoot them one by one
-        _shoot(
-            target["url"],
-            output_path / f"{target['handle']}.jpg",
-            target["width"] or DEFAULT_WIDTH,
-            target["height"] or DEFAULT_HEIGHT,
-            target["wait"] or DEFAULT_WAIT,
-            javascript=utils.get_javascript(target["handle"]),
+    options_list = []
+    for handle in handle_list:
+        # Set the options for each
+        handle_options = dict(
+            url=handle["url"],
+            output=str((output_path / f"{handle['handle']}.jpg").absolute()),
+            width=int(handle["width"] or DEFAULT_WIDTH),
+            height=int(handle["height"] or DEFAULT_HEIGHT),
+            quality=80,
+            wait=int(handle["wait"] or DEFAULT_WAIT)
         )
+        javascript = utils.get_javascript(handle["handle"])
+        if javascript:
+            handle_options['javascript'] = javascript
+        options_list.append(handle_options)
 
+    # Write out YAML config file
+    yaml_str = yaml.dump(options_list)
+    with tempfile.NamedTemporaryFile(suffix='.yml', delete=False) as fh:
+        fh.write(bytes(yaml_str, "utf-8"))
+        yaml_path = Path(fh.name)
 
-def _shoot(url, output, width, height, wait, javascript=None):
-    click.echo(f"Shooting {url}")
+    # Shoot
     command_list = [
         "shot-scraper",
-        url,
-        "-o",
-        output,
-        "--quality",
-        "80",
-        "--width",
-        width,
-        "--height",
-        height,
-        "--wait",
-        wait,
+        "multi",
+        yaml_path,
     ]
-    if javascript:
-        command_list.extend(["--javascript", javascript])
+    click.echo(f"Shooting bundle with {yaml_path} configuration")
     subprocess.run(command_list)
 
 
