@@ -31,7 +31,7 @@ jobs:
   jpg:
     name: Capture JPG
     runs-on: ubuntu-latest
-    imeout-minutes: 5
+    timeout-minutes: 5
     strategy:
       matrix:
         source: ${{fromJson(inputs.source)}}
