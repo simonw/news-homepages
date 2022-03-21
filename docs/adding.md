@@ -12,7 +12,7 @@ Adding a new site requires that a new row be added to [`newshomepages/sources/si
 After doing that, you should verify the site works by running the `shoot.py` command and inspecting the result.
 
 ```bash
-pipenv run python -m newshomepages.tweet single your-sites-handle
+pipenv run python -m newshomepages.shoot single your-sites-handle
 ```
 
 ## Hide ads and pop ups
