@@ -12,6 +12,7 @@ internetarchive = "*"
 python-slugify = "*"
 python-telegram-bot = "*"
 "discord.py" = "*"
+playwright = "==1.14.1"
 
 [dev-packages]
 pre-commit = "*"
