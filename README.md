@@ -2,6 +2,7 @@ A bot that gathers, archives and shares screenshots of news homepages
 
 ## Links
 
+- Archive: [archive.org/details/news-homepages](https://archive.org/details/news-homepages)
 - Twitter: [@newshomepages](https://twitter.com/newshomepages)
 - Telegram: [t.me/newshomepages](https://t.me/newshomepages)
 - Documentation: [palewi.re/docs/news-homepages/](https://palewi.re/docs/news-homepages/index.html)
