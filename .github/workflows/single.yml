@@ -156,6 +156,6 @@ jobs:
         uses: ./.github/actions/archive
         with:
           source: ${{ matrix.source }}
-          access-key: ${{ inputs.ia-access-key }}
-          secret-key: ${{ inputs.ia-secret-key }}
-          collection: ${{ inputs.ia-collection }}
+          access-key: ${{ secrets.ia-access-key }}
+          secret-key: ${{ secrets.ia-secret-key }}
+          collection: ${{ secrets.ia-collection }}
