@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from pathlib import Path
+import time
 
 import click
 import pytz
@@ -94,7 +95,6 @@ def bundle(slug, input_dir):
 
         # Get the image
         input_path = Path(input_dir)
-        input_path.mkdir(parents=True, exist_ok=True)
         image_path = input_path / f"{target['handle']}.jpg"
         io = open(image_path, "rb")
         media_id = api.UploadMediaSimple(io)
@@ -136,6 +136,11 @@ def bundle(slug, input_dir):
             status = api.PostUpdate(
                 tweet, media=media_list, in_reply_to_status_id=parent_status_id
             )
+
+        # Pause to let it happen
+        time.sleep(3)
+
+        # Set the parent id for the next loop iteration
         parent_status_id = status.id
 
 
