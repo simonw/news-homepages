@@ -26,6 +26,15 @@ on:
       twitter-access-token-secret:
         description: A Twitter app access token secret
         required: true
+      ia-access-key:
+        description: An API key with permission to post to archive.org
+        required: true
+      ia-secret-key:
+        description: An API secret with permission to post to archive.org
+        required: true
+      ia-collection:
+        description: The identifier of the target archive.org collection
+        required: true
 
 jobs:
   jpg:
@@ -125,3 +134,28 @@ jobs:
           source: ${{ matrix.source }}
           command: single
           bot-token: ${{ secrets.discord-bot-token }}
+
+  archive:
+    name: Post to archive.org
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: archive
+        name: Post
+        uses: ./.github/actions/archive
+        with:
+          source: ${{ matrix.source }}
+          access-key: ${{ inputs.ia-access-key }}
+          secret-key: ${{ inputs.ia-secret-key }}
+          collection: ${{ inputs.ia-collection }}
