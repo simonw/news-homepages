@@ -31,7 +31,7 @@ jobs:
   jpg:
     name: Capture JPG
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - id: checkout
         name: Checkout
