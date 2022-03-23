@@ -7,7 +7,11 @@ sfchronicle,https://www.sfchronicle.com/,San Francisco Chronicle,,,,America/Los_
 kyivindependent,https://kyivindependent.com/,Kyiv Independent,,,,Europe/Kiev,eastern-europe
 KyivPost,https://www.kyivpost.com/,KyivPost,,,,Europe/Kiev,eastern-europe
 meduzaproject,https://meduza.io/,Meduza,,1800,4000,Europe/Riga,eastern-europe
-rianru,https://ria.ru/,RIA Novosti,,,,Europe/Moscow,eastern-europe
+rianru,https://ria.ru/,RIA Novosti,,,,Europe/Moscow,russia
+ukrinform,https://www.ukrinform.ua/,Ukrinform,,,,Europe/Kiev,eastern-europe
+zn_ua,https://zn.ua/,ZN.UA,,,,Europe/Kiev,eastern-europe
+HromadskeUA,https://hromadske.ua/,hromadske,,,,Europe/Kiev,eastern-europe
+segodnya_online,https://www.segodnya.ua/,Сегодня,,,,Europe/Kiev,eastern-europe
 abqbizfirst,https://www.bizjournals.com/albuquerque/,Albuquerque Business First,,2000,,America/Denver,newmexico
 ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
 CrucesSunNews,https://www.lcsun-news.com/,Las Cruces Sun News,,2000,,America/Denver,newmexico
