@@ -66,6 +66,9 @@ def bundle(slug, input_dir):
     bundle = utils.get_bundle(slug)
     target_list = [h for h in utils.get_site_list() if h["bundle"] == slug]
 
+    # Sort alphabetically by handle
+    sorted_list = sorted(target_list, key=lambda x: x["handle"])
+
     # Connect to Twitter
     api = twitter.Api(
         consumer_key=os.getenv("TWITTER_CONSUMER_KEY"),
@@ -88,7 +91,7 @@ def bundle(slug, input_dir):
 
     # Loop through all the targets
     media_list = []
-    for i, target in enumerate(target_list):
+    for i, target in enumerate(sorted_list):
         # Get the list item
         emoji = utils.numoji(i + 1)
         list_item = f"\n{emoji} @{target['handle']}"
