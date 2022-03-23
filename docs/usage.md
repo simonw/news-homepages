@@ -39,7 +39,7 @@ TELEGRAM_API_KEY=
 Then you can post a single site with the following:
 
 ```bash
-pipenv run python -m newshomepages.telegrammer latimes
+pipenv run python -m newshomepages.telegrammer single latimes
 ```
 
 ## Discord
@@ -53,7 +53,7 @@ DISCORD_BOT_TOKEN=
 Then you can post a single site with the following:
 
 ```bash
-pipenv run python -m newshomepages.discorder latimes
+pipenv run python -m newshomepages.discorder single latimes
 ```
 
 ## Archiving
@@ -69,5 +69,5 @@ IA_COLLECTION=
 Then you can upload a file by running the following:
 
 ```bash
-pipenv run python -m newshomepages.archive latimes
+pipenv run python -m newshomepages.archive single latimes
 ```

@@ -60,6 +60,9 @@ jobs:
       twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
       twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
       twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+      ia-access-key: ${{ secrets.IA_ACCESS_KEY }}
+      ia-secret-key: ${{ secrets.IA_SECRET_KEY }}
+      ia-collection: ${{ secrets.IA_COLLECTION }}
 ```
 
 If you link your site to an existing bundle, this step will not be necessary.
