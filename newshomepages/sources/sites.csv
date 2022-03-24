@@ -47,11 +47,11 @@ msnbc,https://www.msnbc.com/,MSNBC,,,,America/New_York,us-national-television
 ABC,https://abcnews.go.com/,ABC News,,,,America/New_York,us-national-television
 NBCNews,https://www.nbcnews.com/,NBC News,,,,America/New_York,us-national-television
 CBSNews,https://www.cbsnews.com/,CBS News,,,,America/New_York,us-national-television
-gbpressgazette,https://www.greenbaypressgazette.com/,Green Bay Press-Gazette,,2000,,America/Chicago,wisconsin
-journalsentinel,https://www.jsonline.com/,Milwaukee Journal Sentinel,,2000,,America/Chicago,wisconsin
-LaCrosseTribune,https://lacrossetribune.com/,LaCrosse Tribune,,2000,,America/Chicago,wisconsin
-leadertelegram,https://www.leadertelegram.com/,Eau Claire Leader-Telegram,,2000,,America/Chicago,wisconsin
-PostCrescent,https://www.postcrescent.com/,Appleton Post Crescent,,2000,,America/Chicago,wisconsin
-StevensPointJrl,https://www.stevenspointjournal.com/,Stevens Point Journal,,2000,,America/Chicago,wisconsin
-wausauherald,https://www.wausaudailyherald.com/,Wausau Daily Herald,,2000,,America/Chicago,wisconsin
-WiStateJournal,https://madison.com/wsj/, Wisconsin State Journal,,2000,,America/Chicago,wisconsin
+gbpressgazette,https://www.greenbaypressgazette.com/,Green Bay Press-Gazette,,,,America/Chicago,wisconsin
+journalsentinel,https://www.jsonline.com/,Milwaukee Journal Sentinel,,,,America/Chicago,wisconsin
+LaCrosseTribune,https://lacrossetribune.com/,LaCrosse Tribune,,,,America/Chicago,wisconsin
+leadertelegram,https://www.leadertelegram.com/,Eau Claire Leader-Telegram,,,,America/Chicago,wisconsin
+PostCrescent,https://www.postcrescent.com/,Appleton Post Crescent,,,,America/Chicago,wisconsin
+StevensPointJrl,https://www.stevenspointjournal.com/,Stevens Point Journal,,,,America/Chicago,wisconsin
+wausauherald,https://www.wausaudailyherald.com/,Wausau Daily Herald,,,,America/Chicago,wisconsin
+WiStateJournal,https://madison.com/wsj/, Wisconsin State Journal,,,,America/Chicago,wisconsin
