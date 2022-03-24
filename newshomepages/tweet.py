@@ -1,7 +1,7 @@
 import os
+import time
 from datetime import datetime
 from pathlib import Path
-import time
 
 import click
 import pytz
@@ -67,7 +67,7 @@ def bundle(slug, input_dir):
     target_list = [h for h in utils.get_site_list() if h["bundle"] == slug]
 
     # Sort alphabetically by handle
-    sorted_list = sorted(target_list, key=lambda x: x["handle"])
+    sorted_list = sorted(target_list, key=lambda x: x["handle"].lower())
 
     # Connect to Twitter
     api = twitter.Api(
