@@ -44,6 +44,9 @@ wsj,https://www.wsj.com/,Wall Street Journal,,2000,,America/New_York,us-national
 cnn,https://www.cnn.com/,CNN,,,,US/Eastern,us-national-television
 foxnews,https://www.foxnews.com/,Fox News,,,,America/New_York,us-national-television
 msnbc,https://www.msnbc.com/,MSNBC,,,,America/New_York,us-national-television
+ABC,https://abcnews.go.com/,ABC News,,,,America/New_York,us-national-television
+NBCNews,https://www.nbcnews.com/,NBC News,,,,America/New_York,us-national-television
+CBSNews,https://www.cbsnews.com/,CBS News,,,,America/New_York,us-national-television
 gbpressgazette,https://www.greenbaypressgazette.com/,Green Bay Press-Gazette,,2000,,America/Chicago,wisconsin
 journalsentinel,https://www.jsonline.com/,Milwaukee Journal Sentinel,,2000,,America/Chicago,wisconsin
 LaCrosseTribune,https://lacrossetribune.com/,LaCrosse Tribune,,2000,,America/Chicago,wisconsin
