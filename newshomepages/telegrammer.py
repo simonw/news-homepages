@@ -1,4 +1,5 @@
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -38,6 +39,7 @@ def bundle(slug, input_dir):
     input_path = Path(input_dir)
     for handle in handle_list:
         _post(handle, input_path)
+        time.sleep(2.5)
 
 
 def _post(handle, input_dir):

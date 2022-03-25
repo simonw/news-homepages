@@ -1,4 +1,5 @@
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -44,6 +45,7 @@ def bundle(slug, input_dir):
         data = utils.get_site(handle)
         # Upload
         _upload(data, input_dir)
+        time.sleep(2.5)
 
 
 def _upload(data, input_dir):
