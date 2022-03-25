@@ -20,7 +20,7 @@ def cli():
 @cli.command()
 @click.argument("handle")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def single(handle, input_dir):
+def single(handle: str, input_dir: str):
     """Tweet a single source."""
     # Pull the source’s metadata
     data = utils.get_site(handle)
@@ -60,7 +60,7 @@ def single(handle, input_dir):
 @cli.command()
 @click.argument("slug")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def bundle(slug, input_dir):
+def bundle(slug: str, input_dir: str):
     """Tweet four sources as a single tweet."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)

@@ -1,10 +1,11 @@
 import logging
 import subprocess
-from pathlib import Path
 import tempfile
-import yaml
+import typing
+from pathlib import Path
 
 import click
+import yaml
 
 from . import utils
 
@@ -24,7 +25,7 @@ def cli():
 @cli.command()
 @click.argument("handle")
 @click.option("-o", "--output-dir", "output_dir", default="./")
-def single(handle, output_dir):
+def single(handle: str, output_dir: str):
     """Screenshot a single source."""
     # Get metadata
     data = utils.get_site(handle)
@@ -34,11 +35,11 @@ def single(handle, output_dir):
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Shoot the shot
-    command_list = [
+    command_list: typing.List[typing.Any] = [
         "shot-scraper",
         data["url"],
         "-o",
-        output_path / f"{data['handle']}.jpg",
+        str(output_path / f"{data['handle']}.jpg"),
         "--quality",
         "80",
         "--width",
@@ -58,7 +59,7 @@ def single(handle, output_dir):
 @cli.command()
 @click.argument("slug")
 @click.option("-o", "--output-dir", "output_dir", default="./")
-def bundle(slug, output_dir):
+def bundle(slug: str, output_dir: str):
     """Screenshot a bundle of sources."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)
@@ -78,16 +79,16 @@ def bundle(slug, output_dir):
             width=int(handle["width"] or DEFAULT_WIDTH),
             height=int(handle["height"] or DEFAULT_HEIGHT),
             quality=80,
-            wait=int(handle["wait"] or DEFAULT_WAIT)
+            wait=int(handle["wait"] or DEFAULT_WAIT),
         )
         javascript = utils.get_javascript(handle["handle"])
         if javascript:
-            handle_options['javascript'] = javascript
+            handle_options["javascript"] = javascript
         options_list.append(handle_options)
 
     # Write out YAML config file
     yaml_str = yaml.dump(options_list)
-    with tempfile.NamedTemporaryFile(suffix='.yml', delete=False) as fh:
+    with tempfile.NamedTemporaryFile(suffix=".yml", delete=False) as fh:
         fh.write(bytes(yaml_str, "utf-8"))
         yaml_path = Path(fh.name)
 
@@ -95,7 +96,7 @@ def bundle(slug, output_dir):
     command_list = [
         "shot-scraper",
         "multi",
-        yaml_path,
+        str(yaml_path),
     ]
     click.echo(f"Shooting bundle with {yaml_path} configuration")
     subprocess.run(command_list)

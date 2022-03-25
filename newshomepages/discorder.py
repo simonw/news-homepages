@@ -14,7 +14,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 class BotClient(discord.Client):
     """A chat client that posts the provided handle."""
 
-    def __init__(self, data, input_path, *args, **kwargs):
+    def __init__(self, data: dict, input_path: Path, *args, **kwargs):
         """Initialize object."""
         super().__init__(*args, **kwargs)
         self.data = data
@@ -56,7 +56,7 @@ def cli():
 @cli.command()
 @click.argument("handle")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def single(handle, input_dir):
+def single(handle: str, input_dir: str):
     """Send a single source."""
     input_path = Path(input_dir)
     _post(handle, input_path)
@@ -65,7 +65,7 @@ def single(handle, input_dir):
 @cli.command()
 @click.argument("slug")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def bundle(slug, input_dir):
+def bundle(slug: str, input_dir: str):
     """Send a bundle of sources."""
     bundle = utils.get_bundle(slug)
     handle_list = [
@@ -76,7 +76,7 @@ def bundle(slug, input_dir):
         _post(handle, input_path)
 
 
-async def _post(handle, input_path):
+async def _post(handle: str, input_path: Path):
     data = utils.get_site(handle)
     c = BotClient(data, input_path)
     c.run(DISCORD_BOT_TOKEN)

@@ -23,7 +23,7 @@ def cli():
 @cli.command()
 @click.argument("handle")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def single(handle, input_dir):
+def single(handle: str, input_dir: str):
     """Archive a screenshot."""
     # Pull the source’s metadata
     data = utils.get_site(handle)
@@ -34,7 +34,7 @@ def single(handle, input_dir):
 @cli.command()
 @click.argument("slug")
 @click.option("-i", "--input-dir", "input_dir", default="./")
-def bundle(slug, input_dir):
+def bundle(slug: str, input_dir: str):
     """Send a bundle of sources."""
     bundle = utils.get_bundle(slug)
     handle_list = [
@@ -48,7 +48,7 @@ def bundle(slug, input_dir):
         time.sleep(2.5)
 
 
-def _upload(data, input_dir):
+def _upload(data: dict, input_dir: str):
     # Set the input path
     input_path = Path(input_dir).absolute()
     image_path = input_path / f"{data['handle']}.jpg"

@@ -23,6 +23,11 @@ pytest = "*"
 flake8 = "*"
 flake8-docstrings = "*"
 flake8-bugbear = "*"
+mypy = "*"
+types-requests = "*"
+types-python-slugify = "*"
+types-pytz = "*"
+types-pyyaml = "*"
 
 [requires]
 python_version = "3.9"
