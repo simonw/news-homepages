@@ -8,6 +8,7 @@ runs:
         sudo apt install -y gstreamer1.0-gl gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
         sudo apt install -y libnss3 libxss1 libasound2 fonts-noto-color-emoji
         sudo apt install -y ubuntu-restricted-extras
+      shell: bash
 
     - id: install-pipenv
       name: Install pipenv
