@@ -12,11 +12,10 @@ ukrinform,https://www.ukrinform.ua/,Ukrinform,,,,Europe/Kiev,eastern-europe
 zn_ua,https://zn.ua/,ZN.UA,,,,Europe/Kiev,eastern-europe
 HromadskeUA,https://hromadske.ua/,hromadske,,,,Europe/Kiev,eastern-europe
 segodnya_online,https://www.segodnya.ua/,Сегодня,,,,Europe/Kiev,eastern-europe
-abqbizfirst,https://www.bizjournals.com/albuquerque/,Albuquerque Business First,,2000,,America/Denver,newmexico
-ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,2000,,America/Denver,newmexico
-CrucesSunNews,https://www.lcsun-news.com/,Las Cruces Sun News,,2000,,America/Denver,newmexico
-source_nm,https://sourcenm.com/,Source New Mexico,,2000,,America/Denver,newmexico
-thenewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,2000,,America/Denver,newmexico
+ABQJournal,https://www.abqjournal.com/,Albuquerque Journal,,,,America/Denver,new-mexico
+CrucesSunNews,https://www.lcsun-news.com/,Las Cruces Sun News,,,,America/Denver,new-mexico
+source_nm,https://sourcenm.com/,Source New Mexico,,,,America/Denver,new-mexico
+thenewmexican,https://www.santafenewmexican.com/,Santa Fe New Mexican,,,,America/Denver,new-mexico
 ABC7,https://abc7.com/,ABC7,,,,America/Los_Angeles,socal
 FOXLA,https://www.foxla.com/,FOX 11 Los Angeles,,,,America/Los_Angeles,socal
 KTLA,https://ktla.com,KTLA,,,,America/Los_Angeles,socal
