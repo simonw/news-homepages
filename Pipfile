@@ -19,6 +19,8 @@ pre-commit = "*"
 sphinx = "*"
 sphinx-autobuild = "*"
 myst-parser = "*"
+pytest = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.9"
