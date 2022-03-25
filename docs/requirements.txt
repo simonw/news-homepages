@@ -2,3 +2,10 @@ sphinx
 myst-parser
 sphinxcontrib-napoleon
 sphinx-click
+python-twitter
+click
+pytz
+internetarchive
+python-slugify
+python-telegram-bot
+"discord.py"
