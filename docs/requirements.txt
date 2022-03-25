@@ -8,4 +8,4 @@ pytz
 internetarchive
 python-slugify
 python-telegram-bot
-"discord.py"
+discord.py
