@@ -28,6 +28,8 @@ types-requests = "*"
 types-python-slugify = "*"
 types-pytz = "*"
 types-pyyaml = "*"
+sphinxcontrib-napoleon = "*"
+sphinx-click = "*"
 
 [requires]
 python_version = "3.9"

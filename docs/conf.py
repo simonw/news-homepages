@@ -1,6 +1,19 @@
+import os
+import sys
 from datetime import datetime
+from pathlib import Path
 
-extensions = ["myst_parser"]
+THIS_DIR = Path(__file__).parent.absolute()
+
+sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, str(THIS_DIR.parent))
+
+extensions = [
+    "myst_parser",
+    "sphinx.ext.autodoc",
+    "sphinxcontrib.napoleon",
+    "sphinx_click",
+]
 templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"

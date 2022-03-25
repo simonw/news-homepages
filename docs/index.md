@@ -12,6 +12,7 @@ A bot that gathers, archives and shares screenshots of news homepages
 installation
 usage
 adding
+reference
 ```
 
 ## Links

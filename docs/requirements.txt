@@ -1,3 +1,4 @@
 sphinx
-sphinx-autobuild
 myst-parser
+sphinxcontrib-napoleon
+sphinx-click

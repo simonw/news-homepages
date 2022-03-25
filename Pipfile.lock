@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c12c6cfc5ccfe28348f350b152db46e6368213014927bd64a2ef5bacd291ed41"
+            "sha256": "c8a14afb712de7d26029e1e9173eed44d6be39a1e6cf154d20f715a8298f6140"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -739,6 +739,14 @@
             "markers": "python_version >= '3'",
             "version": "==2.0.12"
         },
+        "click": {
+            "hashes": [
+                "sha256:6a7a62563bbfabfda3a38f3023a1db4a35978c0abd76f6c9605ecd6554d6d9b1",
+                "sha256:8458d7b1287c5fb128c90e23381cf99dcde74beaf6c7ff6384ce84d6fe090adb"
+            ],
+            "index": "pypi",
+            "version": "==8.0.4"
+        },
         "colorama": {
             "hashes": [
                 "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b",
@@ -999,6 +1007,13 @@
             "markers": "python_version >= '3.6'",
             "version": "==1.0.0"
         },
+        "pockets": {
+            "hashes": [
+                "sha256:68597934193c08a08eb2bf6a1d85593f627c22f9b065cc727a4f03f669d96d86",
+                "sha256:9320f1a3c6f7a9133fe3b571f283bcf3353cd70249025ae8d618e40e9f7e92b3"
+            ],
+            "version": "==0.9.1"
+        },
         "pre-commit": {
             "hashes": [
                 "sha256:725fa7459782d7bec5ead072810e47351de01709be838c2ce1726b9591dad616",
@@ -1149,6 +1164,14 @@
             "index": "pypi",
             "version": "==2021.3.14"
         },
+        "sphinx-click": {
+            "hashes": [
+                "sha256:36dbf271b1d2600fb05bd598ddeed0b6b6acf35beaf8bc9d507ba7716b232b0e",
+                "sha256:8fb0b048a577d346d741782e44d041d7e908922858273d99746f305870116121"
+            ],
+            "index": "pypi",
+            "version": "==3.1.0"
+        },
         "sphinxcontrib-applehelp": {
             "hashes": [
                 "sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a",
@@ -1180,6 +1203,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==1.0.1"
+        },
+        "sphinxcontrib-napoleon": {
+            "hashes": [
+                "sha256:407382beed396e9f2d7f3043fad6afda95719204a1e1a231ac865f40abcbfcf8",
+                "sha256:711e41a3974bdf110a484aec4c1a556799eb0b3f3b897521a018ad7e2db13fef"
+            ],
+            "index": "pypi",
+            "version": "==0.7"
         },
         "sphinxcontrib-qthelp": {
             "hashes": [
