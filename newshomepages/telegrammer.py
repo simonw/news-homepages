@@ -10,7 +10,6 @@ from telegram import Bot
 from . import utils
 
 TELEGRAM_API_KEY = os.getenv("TELEGRAM_API_KEY")
-assert TELEGRAM_API_KEY
 
 
 @click.group()
