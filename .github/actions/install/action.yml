@@ -36,5 +36,7 @@ runs:
 
     - id: install-playwright
       name: Install Playwright dependencies
-      run: pipenv run shot-scraper install
+      run: |
+        pipenv run shot-scraper install
+        pipenv run python -m playwright install-deps
       shell: bash
