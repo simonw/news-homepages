@@ -9,6 +9,13 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - id: install-playwright
+      name: Install Playwright dependencies
+      run: |
+        pipenv run shot-scraper install
+        pipenv run python -m playwright install-deps
+      shell: bash
+
     - id: shoot
       name: Take screenshot
       run: pipenv run python -m newshomepages.shoot ${{ inputs.command }} ${{ inputs.source }} -o _dist

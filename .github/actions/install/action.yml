@@ -1,15 +1,6 @@
 runs:
   using: "composite"
   steps:
-    - id: install-apt-packages
-      name: Install apt packages
-      run: |
-        sudo apt-get update
-        sudo apt install -y gstreamer1.0-gl gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
-        sudo apt install -y libnss3 libxss1 libasound2 fonts-noto-color-emoji
-        sudo apt install -y ubuntu-restricted-extras
-      shell: bash
-
     - id: install-pipenv
       name: Install pipenv
       run: pipx install pipenv
@@ -32,11 +23,4 @@ runs:
     - id: install-python-dependencies
       name: Install Python dependencies
       run: pipenv install --dev
-      shell: bash
-
-    - id: install-playwright
-      name: Install Playwright dependencies
-      run: |
-        pipenv run shot-scraper install
-        pipenv run python -m playwright install-deps
       shell: bash
