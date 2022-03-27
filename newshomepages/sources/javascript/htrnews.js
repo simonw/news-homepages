@@ -1,7 +1,3 @@
 document.querySelectorAll(
-    '#gnt_mol_oy'
-  ).forEach(el => el.style.display = 'none')
-
-document.querySelectorAll('[aria-label="advertisement"]').forEach(el => el.style.display = 'none')
-
-document.querySelectorAll('#onetrust-banner-sdk').forEach(el => el.style.display = 'none')
+    '#gnt_mol_oy,[aria-label="advertisement"],#onetrust-banner-sdk'
+).forEach(el => el.style.display = 'none')
