@@ -19,7 +19,7 @@ pipenv run python -m newshomepages.shoot single your-handle
 
 ## Hide ads and pop ups
 
-If there are popups or ads that interfere with the screenshot, you should devise a file in [`sources/javascript`](https://github.com/palewire/news-homepages/tree/main/newshomepages/sources/javascript). It’s name should be slugged to match the Twitter handle of your site.
+If there are popups or ads that interfere with the screenshot, you should devise a file in [`sources/javascript`](https://github.com/palewire/news-homepages/tree/main/newshomepages/sources/javascript). Its name should be slugged to match the Twitter handle of your site.
 
 Here’s a generic example that would hide any elements with the id of `ad_unit` or class of `popup`. If you identify the id or class of a page element you'd like to hide, it could be inserted into the scheme.
 
