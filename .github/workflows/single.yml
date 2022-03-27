@@ -75,8 +75,8 @@ jobs:
         name: Install
         uses: ./.github/actions/install
 
-      - id: screenshot
-        name: Screenshot
+      - id: save-page
+        name: Save in Wayback Machine
         uses: ./.github/actions/wayback
         with:
           source: ${{ matrix.source }}
