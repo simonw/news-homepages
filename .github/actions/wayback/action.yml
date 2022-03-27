@@ -10,6 +10,6 @@ runs:
   using: "composite"
   steps:
     - id: save-page
-      name: Save page
+      name: Save in Wayback Machine
       run: pipenv run python -m newshomepages.wayback ${{ inputs.command }} ${{ inputs.source }}
       shell: bash

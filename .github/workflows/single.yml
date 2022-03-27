@@ -61,7 +61,7 @@ jobs:
           command: single
 
   wayback:
-    name: Save page
+    name: Wayback Machine
     runs-on: ubuntu-latest
     strategy:
       matrix:
