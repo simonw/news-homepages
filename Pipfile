@@ -13,7 +13,7 @@ python-slugify = "*"
 python-telegram-bot = "*"
 "discord.py" = "*"
 playwright = "==1.14.1"
-savepagenow = "==1.2.0"
+savepagenow = "==1.2.1"
 
 [dev-packages]
 pre-commit = "*"
