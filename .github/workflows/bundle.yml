@@ -58,7 +58,7 @@ jobs:
           command: bundle
 
   accessibility:
-    name: Wayback Machine
+    name: Accessibility tree
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -70,7 +70,7 @@ jobs:
         uses: ./.github/actions/install
 
       - id: save-page
-        name: Save the accessibility
+        name: Save the accessibility tree
         uses: ./.github/actions/accessibility
         with:
           source: ${{ inputs.source }}

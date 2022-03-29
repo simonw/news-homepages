@@ -22,7 +22,7 @@ runs:
       shell: bash
 
     - id: parse-json
-      name: Parse JSON
+      name: Parse accessibility tree JSON
       run: pipenv run python -m newshomepages.accessibility ${{ inputs.command }} ${{ inputs.source }} -o _dist
       shell: bash
 
