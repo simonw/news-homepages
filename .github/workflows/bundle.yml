@@ -57,6 +57,25 @@ jobs:
           source: ${{ inputs.source }}
           command: bundle
 
+  accessibility:
+    name: Wayback Machine
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save the accessibility
+        uses: ./.github/actions/accessibility
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+
   wayback:
     name: Wayback Machine
     runs-on: ubuntu-latest

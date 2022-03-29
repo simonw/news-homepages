@@ -60,6 +60,28 @@ jobs:
           source: ${{ matrix.source }}
           command: single
 
+  accessibility:
+    name: Accessibility tree
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save the accessibility
+        uses: ./.github/actions/accessibility
+        with:
+          source: ${{ matrix.source }}
+          command: single
+
   wayback:
     name: Wayback Machine
     runs-on: ubuntu-latest
