@@ -15,10 +15,10 @@ Install pre-commit hooks.
 pipenv run pre-commit install
 ```
 
-Install the shot-scraper web browser.
+Install Chrome as the shot-scraper web browser.
 
 ```bash
-pipenv run shot-scraper install
+pipenv run shot-scraper install --browser=chrome
 ```
 
 You're ready to work.

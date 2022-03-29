@@ -13,13 +13,6 @@ runs:
         python-version: "3.9"
         cache: "pipenv"
 
-    - id: cache-playwright
-      name: Cache Playwright browsers
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/ms-playwright/
-        key: ${{ runner.os }}-browsers
-
     - id: install-python-dependencies
       name: Install Python dependencies
       run: pipenv install --dev

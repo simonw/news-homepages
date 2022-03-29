@@ -48,6 +48,8 @@ def single(handle: str, output_dir: str):
         data["height"] or DEFAULT_HEIGHT,
         "--wait",
         data["wait"] or DEFAULT_WAIT,
+        "--browser",
+        "chrome",
     ]
     javascript = utils.get_javascript(data["handle"])
     if javascript:
@@ -97,6 +99,8 @@ def bundle(slug: str, output_dir: str):
         "shot-scraper",
         "multi",
         str(yaml_path),
+        "--browser",
+        "chrome",
     ]
     click.echo(f"Shooting bundle with {yaml_path} configuration")
     subprocess.run(command_list)
