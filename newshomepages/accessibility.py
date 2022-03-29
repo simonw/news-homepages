@@ -47,7 +47,6 @@ def bundle(slug: str, output_dir: str):
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Loop through the targets
-    options_list = []
     for handle in handle_list:
         # Set the options for each
         _get_accessibility(handle, output_path)
