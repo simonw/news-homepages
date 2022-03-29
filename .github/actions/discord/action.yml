@@ -14,7 +14,7 @@ runs:
   steps:
     - uses: actions/download-artifact@v3
       with:
-        name: ${{ inputs.source }}
+        name: screenshots
 
     - id: discord
       name: Discord

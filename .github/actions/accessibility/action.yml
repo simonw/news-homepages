@@ -30,6 +30,6 @@ runs:
       name: Save artifact
       uses: actions/upload-artifact@v2
       with:
-        name: accessibility-${{ inputs.source }}
+        name: accessibility
         path: _dist
         if-no-files-found: error

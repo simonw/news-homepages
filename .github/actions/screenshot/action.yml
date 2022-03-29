@@ -37,6 +37,6 @@ runs:
       name: Save artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ inputs.source }}
+        name: screenshots
         path: _dist
         if-no-files-found: error
