@@ -2,6 +2,7 @@ import time
 
 import click
 import savepagenow
+from savepagenow.exception import CachedPage, TooManyRequests
 
 from . import utils
 
@@ -37,8 +38,15 @@ def bundle(slug: str) -> list:
         # Pull the source’s metadata
         data = utils.get_site(handle)
         # Upload
-        wayback_url = savepagenow.capture(data["url"])
-        click.echo(f"Archived {data['url']} at {wayback_url}")
+        try:
+            wayback_url = savepagenow.capture(data["url"])
+            click.echo(f"Archived {data['url']} at {wayback_url}")
+        except CachedPage:
+            click.echo(f"archive.org returned a recent cache for {data['url']}")
+            continue
+        except TooManyRequests:
+            click.echo(f"archive.org has already archived {data['url']} 10 times today")
+            continue
         # Pause
         time.sleep(2.5)
         url_list.append([data["handle"], wayback_url])
