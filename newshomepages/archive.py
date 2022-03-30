@@ -52,7 +52,8 @@ def _upload(data: dict, input_dir: str):
     # Set the input path
     input_path = Path(input_dir).absolute()
     image_path = input_path / f"{data['handle']}.jpg"
-    json_path = input_path / f"{data['handle']}.json"
+    a11y_path = input_path / f"{data['handle']}.json"
+    hyperlinks_path = input_path / f"{data['handle']}.hyperlinks.json"
 
     # Get the timestamp
     now = datetime.now()
@@ -78,8 +79,9 @@ def _upload(data: dict, input_dir: str):
         ),
         # Metadata about the image file
         files={
-            f"{data['handle']}-{now_local.isoformat()}.jpg": image_path,
-            f"{data['handle']}-{now_local.isoformat()}.accessibility.json": json_path,
+            f"{data['handle'].lower()}-{now_local.isoformat()}.jpg": image_path,
+            f"{data['handle'].lower()}-{now_local.isoformat()}.accessibility.json": a11y_path,
+            f"{data['handle'].lower()}-{now_local.isoformat()}.hyperlinks.json": hyperlinks_path,
         },
     )
 
