@@ -2,7 +2,7 @@ import time
 
 import click
 import savepagenow
-from savepagenow.exception import CachedPage, TooManyRequests
+from savepagenow.exceptions import CachedPage, TooManyRequests
 
 from . import utils
 
