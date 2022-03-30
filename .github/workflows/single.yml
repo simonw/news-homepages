@@ -38,7 +38,7 @@ on:
 
 jobs:
   jpg:
-    name: Capture JPG
+    name: JPG
     runs-on: ubuntu-latest
     timeout-minutes: 5
     strategy:
