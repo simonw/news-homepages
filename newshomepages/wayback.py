@@ -39,7 +39,10 @@ def bundle(slug: str) -> list:
         data = utils.get_site(handle)
         # Upload
         try:
-            wayback_url = savepagenow.capture(data["url"])
+            wayback_url = savepagenow.capture(
+                data["url"],
+                user_agent="news-homepages (https://palewi.re/docs/savepagenow/)",
+            )
             click.echo(f"Archived {data['url']} at {wayback_url}")
         except CachedPage:
             click.echo(f"archive.org returned a recent cache for {data['url']}")
