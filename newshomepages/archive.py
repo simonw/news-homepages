@@ -52,6 +52,7 @@ def _upload(data: dict, input_dir: str):
     # Set the input path
     input_path = Path(input_dir).absolute()
     image_path = input_path / f"{data['handle']}.jpg"
+    json_path = input_path / f"{data['handle']}.json"
 
     # Get the timestamp
     now = datetime.now()
@@ -60,7 +61,7 @@ def _upload(data: dict, input_dir: str):
     tz = pytz.timezone(data["timezone"])
     now_local = now.astimezone(tz)
 
-    # We will post the file into an "item" keyed to the site's handle and year
+    # We will post the image and the accessibility into an "item" keyed to the site's handle and year
     identifier = f"{data['handle'].lower()}-{now_local.strftime('%Y')}"
     kwargs = dict(
         # Authentication
@@ -76,7 +77,10 @@ def _upload(data: dict, input_dir: str):
             contributor="https://github.com/palewire/news-homepages",
         ),
         # Metadata about the image file
-        files={f"{data['handle']}-{now_local.isoformat()}.jpg": image_path},
+        files={
+            f"{data['handle']}-{now_local.isoformat()}.jpg": image_path,
+            f"{data['handle']}-{now_local.isoformat()}.accessibility.json": json_path,
+        },
     )
 
     # Upload it
