@@ -163,7 +163,7 @@ jobs:
 
   archive:
     name: Post to archive.org
-    needs: [jpg]
+    needs: [jpg,accessibility]
     runs-on: ubuntu-latest
     steps:
       - id: checkout
