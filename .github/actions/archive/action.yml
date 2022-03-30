@@ -28,7 +28,7 @@ runs:
 
     - id: list
       name: List files
-      run: ls -alF _dist/
+      run: ls -alF ./
       shell: bash
 
     - id: archive
