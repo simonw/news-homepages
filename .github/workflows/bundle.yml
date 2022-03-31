@@ -38,7 +38,7 @@ on:
 
 jobs:
   jpg:
-    name: Capture JPG
+    name: JPG
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -72,6 +72,25 @@ jobs:
       - id: save-page
         name: Save the accessibility tree
         uses: ./.github/actions/accessibility
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+
+  hyperlinks:
+    name: Hyperlinks
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save hyperlinks
+        uses: ./.github/actions/hyperlinks
         with:
           source: ${{ inputs.source }}
           command: bundle
@@ -163,7 +182,7 @@ jobs:
 
   archive:
     name: Post to archive.org
-    needs: [jpg]
+    needs: [jpg,accessibility,hyperlinks]
     runs-on: ubuntu-latest
     steps:
       - id: checkout

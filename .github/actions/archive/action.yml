@@ -22,6 +22,15 @@ runs:
       with:
         name: screenshots
 
+    - uses: actions/download-artifact@v3
+      with:
+        name: accessibility
+
+    - id: list
+      name: List files
+      run: ls -alF ./
+      shell: bash
+
     - id: archive
       name: Archive
       run: pipenv run python -m newshomepages.archive ${{ inputs.command }} ${{ inputs.source }}
