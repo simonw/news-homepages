@@ -1,0 +1,15 @@
+name: Commit
+description: Save the latest screenshots to the repository
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: screenshots
+        path: ./latest-screenshots
+
+    - id: list
+      name: List
+      run: ls -alF ./latest-screenshots
+      shell: bash
