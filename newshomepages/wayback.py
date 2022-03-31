@@ -53,10 +53,10 @@ def _save_url(url):
             user_agent="news-homepages (https://palewi.re/docs/savepagenow/)",
         )
     except CachedPage:
-        click.echo(f"archive.org returned a recent cache for {data['url']}")
+        click.echo(f"archive.org returned a recent cache for {url}")
         return None
     except TooManyRequests:
-        click.echo(f"archive.org has already archived {data['url']} 10 times today")
+        click.echo(f"archive.org has already archived {url} 10 times today")
         return None
 
 
