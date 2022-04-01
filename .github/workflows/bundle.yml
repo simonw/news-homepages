@@ -180,6 +180,19 @@ jobs:
           command: bundle
           bot-token: ${{ secrets.discord-bot-token }}
 
+  commit:
+    name: Commit
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: commit
+        name: Commit
+        uses: ./.github/actions/commit
+
   archive:
     name: Post to archive.org
     needs: [jpg,accessibility,hyperlinks]
