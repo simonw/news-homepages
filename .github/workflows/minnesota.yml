@@ -1,4 +1,4 @@
-name: Iowa
+name: Minnesota
 
 on:
   workflow_dispatch:
