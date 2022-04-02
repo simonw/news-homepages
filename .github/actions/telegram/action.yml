@@ -1,3 +1,6 @@
+name: Telegram
+description: Post screenshots to Telegram of the provided site
+
 inputs:
   source:
     description: “The site handle to screenshot”

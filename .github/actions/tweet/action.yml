@@ -1,3 +1,6 @@
+name: Twitter
+description: Post the provided sites to Twitter
+
 inputs:
   source:
     description: "The site handle to screenshot"

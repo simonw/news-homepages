@@ -1,3 +1,6 @@
+name: Discord
+description: Post screenshots to a Discord channel
+
 inputs:
   source:
     description: “The site handle to screenshot”

@@ -1,3 +1,6 @@
+name: Screenshot
+description: Snap a JPG of the provided site
+
 inputs:
   source:
     description: “The site handle to screenshot”

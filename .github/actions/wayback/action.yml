@@ -1,3 +1,6 @@
+name: Wayback Machine
+description: Save the provided sites to the Wayback Machine at archive.org
+
 inputs:
   source:
     description: “The site handle to screenshot”

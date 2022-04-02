@@ -1,3 +1,6 @@
+name: Archive
+description: Upload screenshots to an archive.org collection
+
 inputs:
   source:
     description: “The site handle to screenshot”
@@ -25,11 +28,6 @@ runs:
     - uses: actions/download-artifact@v3
       with:
         name: accessibility
-
-    - id: list
-      name: List files
-      run: ls -alF ./
-      shell: bash
 
     - id: archive
       name: Archive
