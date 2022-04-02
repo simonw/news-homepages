@@ -14,8 +14,14 @@ runs:
       run: ls -alF ./latest-screenshots
       shell: bash
 
-    - name: Commit and push
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Saved latest screenshots
-        file_pattern: ./latest-screenshots/*.jpg
+    - id: commit
+      name: Commit
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git config pull.rebase false
+        git status
+        git pull origin $GITHUB_REF
+        git add ./latest-screenshots/*.jpg
+        git commit -m "Latest screenshots" --author="palewire <palewire@users.noreply.github.com>" && git push || true
+      shell: bash
