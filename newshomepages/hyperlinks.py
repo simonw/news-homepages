@@ -24,14 +24,10 @@ def cli():
 def single(handle: str, output_dir: str):
     """Save all hyperlinsk as JSON for a single site."""
     # Get metadata
-    data = utils.get_site(handle)
-
-    # Set the output path
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+    site = utils.get_site(handle)
 
     # Do it
-    _get_links(data, output_path)
+    _get_links(site, output_dir)
 
 
 @cli.command()
@@ -40,21 +36,16 @@ def single(handle: str, output_dir: str):
 def bundle(slug: str, output_dir: str):
     """Save all hyperlinks as JSON for a bundle of sites."""
     # Pull the source metadata
-    bundle = utils.get_bundle(slug)
-    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
-
-    # Set the output path
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+    site_list = utils.get_sites_in_bundle(slug)
 
     # Loop through the targets
-    for handle in handle_list:
+    for site in site_list:
         # Set the options for each
-        _get_links(handle, output_path)
+        _get_links(site, output_dir)
         time.sleep(0.25)
 
 
-def _get_links(data, output_path):
+def _get_links(data, output_dir):
     click.echo(f"Getting hyperlinks for {data['url']}")
     # Start the browser
     with sync_playwright() as p:
@@ -87,6 +78,10 @@ def _get_links(data, output_path):
 
         # Add to big list
         data_list.append(d)
+
+    # Set the output path
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
 
     # Write it out
     with open(output_path / f"{data['handle']}.hyperlinks.json", "w") as fp:

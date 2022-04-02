@@ -55,6 +55,19 @@ def get_bundle(slug: str) -> typing.Dict:
     return next(d for d in bundle_list if d["slug"].lower() == slug.lower())
 
 
+def get_sites_in_bundle(slug: str) -> typing.List[typing.Dict]:
+    """Get all the sites in the provided bundle.
+
+    Args:
+        slug (str): The unique string identifier of the bundle.
+
+    Returns a list of site dictionaries.
+    """
+    bundle = get_bundle(slug)
+    site_list = get_site_list()
+    return [s for s in site_list if s["bundle"] == bundle["slug"]]
+
+
 def get_javascript(handle: str) -> typing.Optional[str]:
     """Get the JavaScript file to run before the screenshot, if it exists.
 

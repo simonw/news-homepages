@@ -28,7 +28,7 @@ def cli():
 def single(handle: str, output_dir: str):
     """Screenshot a single source."""
     # Get metadata
-    data = utils.get_site(handle)
+    site = utils.get_site(handle)
 
     # Set the output path
     output_path = Path(output_dir)
@@ -37,24 +37,24 @@ def single(handle: str, output_dir: str):
     # Shoot the shot
     command_list: typing.List[typing.Any] = [
         "shot-scraper",
-        data["url"],
+        site["url"],
         "-o",
-        str(output_path / f"{data['handle']}.jpg"),
+        str(output_path / f"{site['handle'].lower()}.jpg"),
         "--quality",
         "80",
         "--width",
-        data["width"] or DEFAULT_WIDTH,
+        site["width"] or DEFAULT_WIDTH,
         "--height",
-        data["height"] or DEFAULT_HEIGHT,
+        site["height"] or DEFAULT_HEIGHT,
         "--wait",
-        data["wait"] or DEFAULT_WAIT,
+        site["wait"] or DEFAULT_WAIT,
         "--browser",
         "chrome",
     ]
-    javascript = utils.get_javascript(data["handle"])
+    javascript = utils.get_javascript(site["handle"])
     if javascript:
         command_list.extend(["--javascript", javascript])
-    click.echo(f"Shooting {data['url']}")
+    click.echo(f"Shooting {site['url']}")
     subprocess.run(command_list)
 
 
@@ -64,8 +64,7 @@ def single(handle: str, output_dir: str):
 def bundle(slug: str, output_dir: str):
     """Screenshot a bundle of sources."""
     # Pull the source metadata
-    bundle = utils.get_bundle(slug)
-    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+    site_list = utils.get_sites_in_bundle(slug)
 
     # Set the output path
     output_path = Path(output_dir)
@@ -73,20 +72,20 @@ def bundle(slug: str, output_dir: str):
 
     # Loop through the targets
     options_list = []
-    for handle in handle_list:
+    for site in site_list:
         # Set the options for each
-        handle_options = dict(
-            url=handle["url"],
-            output=str((output_path / f"{handle['handle']}.jpg").absolute()),
-            width=int(handle["width"] or DEFAULT_WIDTH),
-            height=int(handle["height"] or DEFAULT_HEIGHT),
+        site_options = dict(
+            url=site["url"],
+            output=str((output_path / f"{site['handle'].lower()}.jpg").absolute()),
+            width=int(site["width"] or DEFAULT_WIDTH),
+            height=int(site["height"] or DEFAULT_HEIGHT),
             quality=80,
-            wait=int(handle["wait"] or DEFAULT_WAIT),
+            wait=int(site["wait"] or DEFAULT_WAIT),
         )
-        javascript = utils.get_javascript(handle["handle"])
+        javascript = utils.get_javascript(site["handle"])
         if javascript:
-            handle_options["javascript"] = javascript
-        options_list.append(handle_options)
+            site_options["javascript"] = javascript
+        options_list.append(site_options)
 
     # Write out YAML config file
     yaml_str = yaml.dump(options_list)

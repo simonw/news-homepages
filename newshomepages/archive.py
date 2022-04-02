@@ -26,9 +26,9 @@ def cli():
 def single(handle: str, input_dir: str):
     """Archive a screenshot."""
     # Pull the source’s metadata
-    data = utils.get_site(handle)
+    site = utils.get_site(handle)
     # Upload it
-    _upload(data, input_dir)
+    _upload(site, input_dir)
 
 
 @cli.command()
@@ -36,15 +36,10 @@ def single(handle: str, input_dir: str):
 @click.option("-i", "--input-dir", "input_dir", default="./")
 def bundle(slug: str, input_dir: str):
     """Send a bundle of sources."""
-    bundle = utils.get_bundle(slug)
-    handle_list = [
-        h["handle"] for h in utils.get_site_list() if h["bundle"] == bundle["slug"]
-    ]
-    for handle in handle_list:
-        # Pull the source’s metadata
-        data = utils.get_site(handle)
+    site_list = utils.get_sites_in_bundle(slug)
+    for site in site_list:
         # Upload
-        _upload(data, input_dir)
+        _upload(site, input_dir)
         time.sleep(2.5)
 
 

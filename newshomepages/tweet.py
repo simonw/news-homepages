@@ -26,12 +26,7 @@ def single(handle: str, input_dir: str):
     data = utils.get_site(handle)
 
     # Connect to Twitter
-    api = twitter.Api(
-        consumer_key=os.getenv("TWITTER_CONSUMER_KEY"),
-        consumer_secret=os.getenv("TWITTER_CONSUMER_SECRET"),
-        access_token_key=os.getenv("TWITTER_ACCESS_TOKEN_KEY"),
-        access_token_secret=os.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
-    )
+    api = get_twitter_client()
 
     # Get the timestamp
     now = datetime.now()
@@ -46,7 +41,7 @@ def single(handle: str, input_dir: str):
     # Get the image
     input_path = Path(input_dir)
     input_path.mkdir(parents=True, exist_ok=True)
-    image_path = input_path / f"{handle}.jpg"
+    image_path = input_path / f"{handle.lower()}.jpg"
     io = open(image_path, "rb")
     media_id = api.UploadMediaSimple(io)
 
@@ -64,18 +59,13 @@ def bundle(slug: str, input_dir: str):
     """Tweet four sources as a single tweet."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)
-    target_list = [h for h in utils.get_site_list() if h["bundle"] == slug]
+    site_list = utils.get_sites_in_bundle(slug)
 
     # Sort alphabetically by handle
-    sorted_list = sorted(target_list, key=lambda x: x["handle"].lower())
+    sorted_list = sorted(site_list, key=lambda x: x["handle"].lower())
 
     # Connect to Twitter
-    api = twitter.Api(
-        consumer_key=os.getenv("TWITTER_CONSUMER_KEY"),
-        consumer_secret=os.getenv("TWITTER_CONSUMER_SECRET"),
-        access_token_key=os.getenv("TWITTER_ACCESS_TOKEN_KEY"),
-        access_token_secret=os.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
-    )
+    api = get_twitter_client()
 
     # Get the timestamp
     now = datetime.now()
@@ -91,26 +81,26 @@ def bundle(slug: str, input_dir: str):
 
     # Loop through all the targets
     media_list = []
-    for i, target in enumerate(sorted_list):
+    for i, site in enumerate(sorted_list):
         # Get the list item
         emoji = utils.numoji(i + 1)
-        list_item = f"\n{emoji} @{target['handle']}"
+        list_item = f"\n{emoji} @{site['handle']}"
 
         # Get the image
         input_path = Path(input_dir)
-        image_path = input_path / f"{target['handle']}.jpg"
+        image_path = input_path / f"{site['handle'].lower()}.jpg"
         io = open(image_path, "rb")
         media_id = api.UploadMediaSimple(io)
 
         # Get the timestamp
-        target_now = datetime.now()
+        site_now = datetime.now()
 
         # Convert it to local time
-        tz = pytz.timezone(target["timezone"])
-        target_local = target_now.astimezone(tz)
+        tz = pytz.timezone(site["timezone"])
+        site_local = site_now.astimezone(tz)
 
         # Add the alt text to the image
-        alt_text = f"The @{target['handle']} homepage at {target_local.strftime('%-I:%M %p')} local time"
+        alt_text = f"The @{site['handle']} homepage at {site_local.strftime('%-I:%M %p')} local time"
         api.PostMediaMetadata(media_id, alt_text)
 
         # Add it to our list
@@ -145,6 +135,16 @@ def bundle(slug: str, input_dir: str):
 
         # Set the parent id for the next loop iteration
         parent_status_id = status.id
+
+
+def get_twitter_client():
+    """Return a Twitter client ready to post to the API."""
+    return twitter.Api(
+        consumer_key=os.getenv("TWITTER_CONSUMER_KEY"),
+        consumer_secret=os.getenv("TWITTER_CONSUMER_SECRET"),
+        access_token_key=os.getenv("TWITTER_ACCESS_TOKEN_KEY"),
+        access_token_secret=os.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
+    )
 
 
 if __name__ == "__main__":

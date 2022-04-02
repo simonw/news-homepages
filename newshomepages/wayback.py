@@ -18,11 +18,11 @@ def cli():
 def single(handle: str) -> str:
     """Archive a URL."""
     # Pull the source’s metadata
-    data = utils.get_site(handle)
+    site = utils.get_site(handle)
     # Upload it
-    wayback_url = _save_url(data["url"])
+    wayback_url = _save_url(site["url"])
     if wayback_url:
-        click.echo(f"Archived {data['url']} at {wayback_url}")
+        click.echo(f"Archived {site['url']} at {wayback_url}")
     return wayback_url
 
 
@@ -30,19 +30,14 @@ def single(handle: str) -> str:
 @click.argument("slug")
 def bundle(slug: str) -> list:
     """Archive a bundle of sources."""
-    bundle = utils.get_bundle(slug)
-    handle_list = [
-        h["handle"] for h in utils.get_site_list() if h["bundle"] == bundle["slug"]
-    ]
+    site_list = utils.get_sites_in_bundle(slug)
     url_list = []
-    for handle in handle_list:
-        # Pull the source’s metadata
-        data = utils.get_site(handle)
+    for site in site_list:
         # Upload
-        wayback_url = _save_url(data["url"])
+        wayback_url = _save_url(site["url"])
         time.sleep(2.5)
         if wayback_url:
-            url_list.append([data["handle"], wayback_url])
+            url_list.append([site["handle"], wayback_url])
     return url_list
 
 

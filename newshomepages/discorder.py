@@ -1,4 +1,5 @@
 import os
+import typing
 from datetime import datetime
 from pathlib import Path
 
@@ -41,7 +42,7 @@ class BotClient(discord.Client):
         caption = f"The {self.data['name']} homepage at {now_local.strftime('%-I:%M %p')} local time"
 
         # Get the image
-        image_path = self.input_path / f"{self.data['handle']}.jpg"
+        image_path = self.input_path / f"{self.data['handle'].lower()}.jpg"
 
         # Make the post
         await channel.send(caption, file=discord.File(image_path))
@@ -58,8 +59,8 @@ def cli():
 @click.option("-i", "--input-dir", "input_dir", default="./")
 def single(handle: str, input_dir: str):
     """Send a single source."""
-    input_path = Path(input_dir)
-    _post(handle, input_path)
+    site = utils.get_site(handle)
+    _post(site, input_dir)
 
 
 @cli.command()
@@ -67,18 +68,14 @@ def single(handle: str, input_dir: str):
 @click.option("-i", "--input-dir", "input_dir", default="./")
 def bundle(slug: str, input_dir: str):
     """Send a bundle of sources."""
-    bundle = utils.get_bundle(slug)
-    handle_list = [
-        h["handle"] for h in utils.get_site_list() if h["bundle"] == bundle["slug"]
-    ]
+    site_list = utils.get_sites_in_bundle(slug)
+    for site in site_list:
+        _post(site, input_dir)
+
+
+async def _post(site: typing.Dict, input_dir: str):
     input_path = Path(input_dir)
-    for handle in handle_list:
-        _post(handle, input_path)
-
-
-async def _post(handle: str, input_path: Path):
-    data = utils.get_site(handle)
-    c = BotClient(data, input_path)
+    c = BotClient(site, input_path)
     c.run(DISCORD_BOT_TOKEN)
     await c.close()
 

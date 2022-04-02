@@ -23,14 +23,10 @@ def cli():
 def single(handle: str, output_dir: str):
     """Save the accessiblity JSON of a single site."""
     # Get metadata
-    data = utils.get_site(handle)
-
-    # Set the output path
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+    site = utils.get_site(handle)
 
     # Do the thing
-    _get_accessibility(data, output_path)
+    _get_accessibility(site, output_dir)
 
 
 @cli.command()
@@ -39,21 +35,20 @@ def single(handle: str, output_dir: str):
 def bundle(slug: str, output_dir: str):
     """Save the accessibility JSON of a bundle of sites."""
     # Pull the source metadata
-    bundle = utils.get_bundle(slug)
-    handle_list = [h for h in utils.get_site_list() if h["bundle"] == bundle["slug"]]
+    site_list = utils.get_sites_in_bundle(slug)
 
+    # Loop through the targets
+    for site in site_list:
+        # Set the options for each
+        _get_accessibility(site, output_dir)
+        time.sleep(0.25)
+
+
+def _get_accessibility(data, output_dir):
     # Set the output path
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Loop through the targets
-    for handle in handle_list:
-        # Set the options for each
-        _get_accessibility(handle, output_path)
-        time.sleep(0.25)
-
-
-def _get_accessibility(data, output_path):
     # Shoot the shot
     command_list: typing.List[typing.Any] = [
         "shot-scraper",
