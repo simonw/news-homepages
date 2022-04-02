@@ -50,6 +50,8 @@ def single(handle: str, output_dir: str):
         site["wait"] or DEFAULT_WAIT,
         "--browser",
         "chrome",
+        "--timeout",
+        str(60 * 1000),
     ]
     javascript = utils.get_javascript(site["handle"])
     if javascript:
@@ -100,6 +102,8 @@ def bundle(slug: str, output_dir: str):
         str(yaml_path),
         "--browser",
         "chrome",
+        "--timeout",
+        str(60 * 1000),
     ]
     click.echo(f"Shooting bundle with {yaml_path} configuration")
     subprocess.run(command_list)
