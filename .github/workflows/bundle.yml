@@ -181,7 +181,7 @@ jobs:
           bot-token: ${{ secrets.discord-bot-token }}
 
   commit:
-    name: Commit
+    name: Commit to GitHub
     needs: [jpg]
     runs-on: ubuntu-latest
     steps:
