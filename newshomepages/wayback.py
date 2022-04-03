@@ -2,7 +2,7 @@ import time
 
 import click
 import savepagenow
-from savepagenow.exceptions import CachedPage, TooManyRequests
+from savepagenow.exceptions import CachedPage, TooManyRequests, UnknownError
 
 from . import utils
 
@@ -52,6 +52,9 @@ def _save_url(url):
         return None
     except TooManyRequests:
         click.echo(f"archive.org has already archived {url} 10 times today")
+        return None
+    except UnknownError:
+        click.echo(f"archive.org spiders were refused access to {url}")
         return None
 
 
