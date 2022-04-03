@@ -84,7 +84,7 @@ def _get_links(data, output_dir):
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Write it out
-    with open(output_path / f"{data['handle']}.hyperlinks.json", "w") as fp:
+    with open(output_path / f"{data['handle'].lower()}.hyperlinks.json", "w") as fp:
         json.dump(data_list, fp, indent=2)
 
 
