@@ -19,6 +19,11 @@ runs:
       with:
         name: screenshots
 
+    - id: list
+      name: List
+      run: ls -alF
+      shell: bash
+
     - id: telegram
       name: Telegram
       run: pipenv run python -m newshomepages.telegrammer ${{ inputs.command }} ${{ inputs.source }}
