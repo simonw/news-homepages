@@ -46,7 +46,7 @@ def bundle(slug: str, input_dir: str):
 def _upload(data: dict, input_dir: str):
     # Set the input path
     input_path = Path(input_dir).absolute()
-    image_path = input_path / f"{data['handle']}.lower().jpg"
+    image_path = input_path / f"{data['handle'].lower()}.jpg"
     a11y_path = input_path / f"{data['handle'].lower()}.json"
     hyperlinks_path = input_path / f"{data['handle'].lower()}.hyperlinks.json"
 
