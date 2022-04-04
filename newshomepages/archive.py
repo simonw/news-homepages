@@ -47,7 +47,7 @@ def _upload(data: dict, input_dir: str):
     # Set the input path
     input_path = Path(input_dir).absolute()
     image_path = input_path / f"{data['handle'].lower()}.jpg"
-    a11y_path = input_path / f"{data['handle'].lower()}.json"
+    a11y_path = input_path / f"{data['handle'].lower()}.accessibility.json"
     hyperlinks_path = input_path / f"{data['handle'].lower()}.hyperlinks.json"
 
     # Get the timestamp

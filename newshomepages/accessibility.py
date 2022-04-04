@@ -55,7 +55,7 @@ def _get_accessibility(data, output_dir):
         "accessibility",
         data["url"],
         "-o",
-        str(output_path / f"{data['handle'].lower()}.json"),
+        str(output_path / f"{data['handle'].lower()}.accessibility.json"),
     ]
     javascript = utils.get_javascript(data["handle"])
     if javascript:
