@@ -3,8 +3,6 @@ import time
 import typing
 
 import click
-import savepagenow
-from savepagenow.exceptions import CachedPage, TooManyRequests, UnknownError
 
 from . import utils
 
