@@ -59,25 +59,8 @@ def _curl_url(url):
         f"'url={url}'",
         "https://web.archive.org/save",
     ]
-    click.echo(f"Archiving {url}")
+    click.echo(f"Archiving {url}\n")
     os.system(" ".join(command_list))
-
-
-def _save_url(url):
-    try:
-        return savepagenow.capture(
-            url,
-            user_agent="news-homepages (https://palewi.re/docs/savepagenow/)",
-        )
-    except CachedPage:
-        click.echo(f"archive.org returned a recent cache for {url}")
-        return None
-    except TooManyRequests:
-        click.echo(f"archive.org has already archived {url} 10 times today")
-        return None
-    except UnknownError:
-        click.echo(f"archive.org spiders were refused access to {url}")
-        return None
 
 
 if __name__ == "__main__":
