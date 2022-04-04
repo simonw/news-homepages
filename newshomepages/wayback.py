@@ -20,30 +20,23 @@ def cli():
 
 @cli.command()
 @click.argument("handle")
-def single(handle: str) -> str:
+def single(handle: str):
     """Archive a URL."""
     # Pull the source’s metadata
     site = utils.get_site(handle)
     # Upload it
-    wayback_url = _curl_url(site["url"])
-    if wayback_url:
-        click.echo(f"Archived {site['url']} at {wayback_url}")
-    return wayback_url
+    _curl_url(site["url"])
 
 
 @cli.command()
 @click.argument("slug")
-def bundle(slug: str) -> list:
+def bundle(slug: str):
     """Archive a bundle of sources."""
     site_list = utils.get_sites_in_bundle(slug)
-    url_list = []
     for site in site_list:
         # Upload
         wayback_url = _curl_url(site["url"])
         time.sleep(2.5)
-        if wayback_url:
-            url_list.append([site["handle"], wayback_url])
-    return url_list
 
 
 def _curl_url(url):
