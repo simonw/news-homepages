@@ -49,9 +49,16 @@ def _get_links(data, output_dir):
     click.echo(f"Getting hyperlinks for {data['url']}")
     # Start the browser
     with sync_playwright() as p:
+        # Open a browser
         browser_obj = p.chromium.launch()
-        # Get the page
+
+        # Open a page
         page = browser_obj.new_page()
+
+        # Set a long timeout
+        page.set_default_timeout(60 * 1000)
+
+        # Go to the page
         page.goto(data["url"])
 
         # Pull the html
