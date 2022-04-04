@@ -125,6 +125,8 @@ jobs:
         with:
           source: ${{ matrix.source }}
           command: single
+          access-key: ${{ secrets.ia-access-key }}
+          secret-key: ${{ secrets.ia-secret-key }}
 
   twitter:
     name: Post to Twitter

@@ -113,6 +113,8 @@ jobs:
         with:
           source: ${{ inputs.source }}
           command: bundle
+          access-key: ${{ secrets.ia-access-key }}
+          secret-key: ${{ secrets.ia-secret-key }}
 
   twitter:
     name: Post to Twitter
