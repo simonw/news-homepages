@@ -35,7 +35,7 @@ def bundle(slug: str):
     site_list = utils.get_sites_in_bundle(slug)
     for site in site_list:
         # Upload
-        wayback_url = _curl_url(site["url"])
+        _curl_url(site["url"])
         time.sleep(2.5)
 
 
