@@ -58,9 +58,25 @@ def _upload(data: dict, input_dir: str):
     now_local = now.astimezone(tz)
     now_iso = now_local.isoformat()
 
-    # We will post the image and the accessibility into an "item" keyed to the site's handle and year
+    # We will post into an "item" keyed to the site's handle and year
     handle = data["handle"].lower()
     identifier = f"{handle}-{now_local.strftime('%Y')}"
+
+    # Grab the files that exist
+    file_dict = {}
+    if image_path.exists():
+        file_dict[f"{handle}-{now_iso}.jpg"] = image_path
+    if a11y_path.exists():
+        file_dict[f"{handle}-{now_iso}.accessibility.json"] = a11y_path
+    if hyperlinks_path.exists():
+        file_dict[f"{handle}-{now_iso}.hyperlinks.json"] = hyperlinks_path
+
+    # If there are no file, squawk but move on
+    if not file_dict:
+        click.echo(f"No files found for {handle}")
+        return
+
+    # Set all the arguments
     kwargs = dict(
         # Authentication
         access_key=IA_ACCESS_KEY,
@@ -75,11 +91,7 @@ def _upload(data: dict, input_dir: str):
             contributor="https://github.com/palewire/news-homepages",
         ),
         # Metadata about the image file
-        files={
-            f"{handle}-{now_iso}.jpg": image_path,
-            f"{handle}-{now_iso}.accessibility.json": a11y_path,
-            f"{handle}-{now_iso}.hyperlinks.json": hyperlinks_path,
-        },
+        files=file_dict,
     )
 
     # Upload it
