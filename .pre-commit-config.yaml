@@ -10,7 +10,7 @@ repos:
     -   id: check-added-large-files
         args: ['--maxkb=10000']
     -   id: check-byte-order-marker
-        exclude: newshomepages/extensions/*
+        exclude: newshomepages/extensions
     -   id: check-case-conflict
     -   id: check-json
     -   id: mixed-line-ending
