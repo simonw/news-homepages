@@ -10,6 +10,7 @@ repos:
     -   id: check-added-large-files
         args: ['--maxkb=10000']
     -   id: check-byte-order-marker
+        exclude: newshomepages/extensions/*
     -   id: check-case-conflict
     -   id: check-json
     -   id: mixed-line-ending
@@ -48,6 +49,7 @@ repos:
     rev: 'v0.931'  # Use the sha / tag you want to point at
     hooks:
     -   id: mypy
+        exclude: newshomepages/extensions/*
         additional_dependencies:
           - types-requests
           - types-python-slugify

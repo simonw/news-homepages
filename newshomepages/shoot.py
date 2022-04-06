@@ -1,11 +1,11 @@
 import logging
 import subprocess
 import tempfile
-import typing
 from pathlib import Path
 
 import click
 import yaml
+from playwright.sync_api import sync_playwright
 
 from . import utils
 
@@ -34,30 +34,47 @@ def single(handle: str, output_dir: str):
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Shoot the shot
-    command_list: typing.List[typing.Any] = [
-        "shot-scraper",
-        site["url"],
-        "-o",
-        str(output_path / f"{site['handle'].lower()}.jpg"),
-        "--quality",
-        "80",
-        "--width",
-        site["width"] or DEFAULT_WIDTH,
-        "--height",
-        site["height"] or DEFAULT_HEIGHT,
-        "--wait",
-        site["wait"] or DEFAULT_WAIT,
-        "--browser",
-        "chrome",
-        "--timeout",
-        str(60 * 1000),
-    ]
-    javascript = utils.get_javascript(site["handle"])
-    if javascript:
-        command_list.extend(["--javascript", javascript])
-    click.echo(f"Shooting {site['url']}")
-    subprocess.run(command_list)
+    with sync_playwright() as playwright:
+        extension_path = utils.EXTENSIONS_PATH / "uBlock0.chromium"
+        context = playwright.chromium.launch_persistent_context(
+            tempfile.mkdtemp(),
+            headless=False,
+            args=[
+                f"--disable-extensions-except={extension_path}",
+                f"--load-extension={extension_path}",
+            ],
+        )
+        print(context)
+        page = context.background_pages[0]
+        page.goto(site["url"])
+        # Test the background page as you would any other page.
+        context.close()
+
+
+#    # Shoot the shot
+#    command_list: typing.List[typing.Any] = [
+#        "shot-scraper",
+#        site["url"],
+#        "-o",
+#        str(output_path / f"{site['handle'].lower()}.jpg"),
+#        "--quality",
+#        "80",
+#        "--width",
+#        site["width"] or DEFAULT_WIDTH,
+#        "--height",
+#        site["height"] or DEFAULT_HEIGHT,
+#        "--wait",
+#        site["wait"] or DEFAULT_WAIT,
+#        "--browser",
+#        "chrome",
+#        "--timeout",
+#        str(60 * 1000),
+#    ]
+#    javascript = utils.get_javascript(site["handle"])
+#    if javascript:
+#        command_list.extend(["--javascript", javascript])
+#    click.echo(f"Shooting {site['url']}")
+#    subprocess.run(command_list)
 
 
 @cli.command()
