@@ -1,4 +1,4 @@
-name: Le Monde in English
+name: France
 
 on:
   workflow_dispatch:
@@ -8,10 +8,9 @@ on:
 jobs:
   run:
     name: Screenshot
-    uses: ./.github/workflows/single.yml
+    uses: ./.github/workflows/bundle.yml
     with:
-      source: >-
-        ["LeMonde_EN"]
+      source: france
     secrets:
       telegram-api-key: ${{ secrets.TELEGRAM_API_KEY }}
       discord-bot-token: ${{ secrets.DISCORD_BOT_TOKEN }}
