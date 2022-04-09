@@ -24,6 +24,7 @@ def single(handle: str, input_dir: str):
     """Tweet a single source."""
     # Pull the source’s metadata
     data = utils.get_site(handle)
+    click.echo(f"Tweeting {data['handle']}")
 
     # Connect to Twitter
     api = get_twitter_client()
@@ -61,6 +62,7 @@ def bundle(slug: str, input_dir: str):
     """Tweet four sources as a single tweet."""
     # Pull the source metadata
     bundle = utils.get_bundle(slug)
+    click.echo(f"Tweeting {bundle['name']}")
     site_list = utils.get_sites_in_bundle(slug)
 
     # Sort alphabetically by handle
