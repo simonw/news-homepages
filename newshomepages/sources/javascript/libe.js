@@ -1,3 +1,3 @@
 document.querySelectorAll(
-    '.m-block-ad,.o-pwa-ah2s,.o-ad-container'
+  '.message-container,[class^="StickyAd"]'
 ).forEach(el => el.remove())

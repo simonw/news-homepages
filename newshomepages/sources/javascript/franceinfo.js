@@ -1,3 +1,3 @@
 document.querySelectorAll(
-    '.m-block-ad,.o-pwa-ah2s,.o-ad-container'
+  '#didomi-popup,#newsletterSubContainer'
 ).forEach(el => el.remove())
