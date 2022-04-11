@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-shot-scraper = ">=0.0.10"
+shot-scraper = ">=0.0.12"
 python-twitter = "*"
 click = "*"
 pytz = "*"
