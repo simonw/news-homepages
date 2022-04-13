@@ -1,0 +1,27 @@
+name: Commit
+description: Save the latest screenshots to the repository
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: screenshots
+        path: ./latest-screenshots
+
+    - id: list
+      name: List
+      run: ls -alF
+      shell: bash
+
+    - id: commit
+      name: Commit
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git config pull.rebase false
+        git status
+        git pull origin $GITHUB_REF
+        git add ./latest-screenshots/*.jpg
+        git commit -m "Latest screenshots" --author="palewire <palewire@users.noreply.github.com>" && git push || true
+      shell: bash

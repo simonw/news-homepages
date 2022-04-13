@@ -1,3 +1,6 @@
+name: Screenshot
+description: Snap a JPG of the provided site
+
 inputs:
   source:
     description: “The site handle to screenshot”
@@ -16,11 +19,16 @@ runs:
         sudo apt install -y ubuntu-restricted-extras ffmpeg libavcodec-extra
       shell: bash
 
+    - id: cache-playwright
+      name: Cache Playwright browsers
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/ms-playwright/
+        key: ${{ runner.os }}-browsers
+
     - id: install-playwright
       name: Install Playwright dependencies
-      run: |
-        pipenv run shot-scraper install
-        pipenv run python -m playwright install-deps
+      run: pipenv run shot-scraper install --browser=chrome
       shell: bash
 
     - id: shoot
@@ -32,6 +40,6 @@ runs:
       name: Save artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ inputs.source }}
+        name: screenshots
         path: _dist
         if-no-files-found: error

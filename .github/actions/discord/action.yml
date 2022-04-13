@@ -1,3 +1,6 @@
+name: Discord
+description: Post screenshots to a Discord channel
+
 inputs:
   source:
     description: “The site handle to screenshot”
@@ -14,7 +17,7 @@ runs:
   steps:
     - uses: actions/download-artifact@v3
       with:
-        name: ${{ inputs.source }}
+        name: screenshots
 
     - id: discord
       name: Discord
