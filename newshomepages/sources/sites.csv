@@ -1,5 +1,5 @@
 handle,url,name,width,height,wait,timezone,bundle
-Berkeleyside,https://berkeleyside.org/,The Bekerleyside,,,,America/Los_Angeles,bay-area
+Berkeleyside,https://berkeleyside.org/,The Berkeleyside,,,,America/Los_Angeles,bay-area
 EastBayTimes,https://www.eastbaytimes.com/,East Bay Times,,,,America/Los_Angeles,bay-area
 mercnews,https://www.mercurynews.com/,Mercury News,,,,America/Los_Angeles,bay-area
 Oaklandside,https://oaklandside.org/,The Oaklandside,,2000,,America/Los_Angeles,bay-area
@@ -79,4 +79,21 @@ OANN,https://www.oann.com/,One America News Network,,,,America/New_York,us-right
 CPublicPress,https://carolinapublicpress.org/,Carolina Public Press,,,,America/New_York,north-carolina
 wral,https://www.wral.com/,WRAL,,,,America/New_York,north-carolina
 WNCN,https://www.cbs17.com/,CBS 17,,,,America/New_York,north-carolina
-El_Universal_Mx,https://www.eluniversal.com.mx/,El Universal,,,,Ammerica/Mexico_City,mexico
+marylandmatters,https://www.marylandmatters.org/,Maryland Matters,,,,America/New_York,maryland
+baltimoresun,https://www.baltimoresun.com/,The Baltimore Sun,,,,America/New_York,maryland
+thedbk,https://dbknews.com/,The Diamondback,,,,America/New_York,maryland
+frednewspost,https://www.fredericknewspost.com/,Frederick News-Post,,,,America/New_York,maryland
+SahanJournal,https://sahanjournal.com/,Sahan Journal,,,,America/Chicago,minnesota
+StarTribune,https://www.startribune.com/,Minneapolis Star Tribune,,,,America/Chicago,minnesota
+PioneerPress,https://www.twincities.com/,Twin Cities Pioneer Press,,,,America/Chicago,minnesota
+MinnPost,https://www.minnpost.com/,MinnPost,,,,America/Chicago,minnesota
+LeMonde_EN,https://www.lemonde.fr/en/,Le Monde in English,,,,Europe/Paris,france
+France24_en,https://www.france24.com/en/,France 24 English,,,,Europe/Paris,france
+lemondefr,https://www.lemonde.fr/,Le Monde,,,,Europe/Paris,france
+FRANCE24,https://www.france24.com/fr/,FRANCE 24,,,,Europe/Paris,france
+Le_Figaro,https://www.lefigaro.fr/,Le Figaro,,,,Europe/Paris,france
+franceinfo,https://www.francetvinfo.fr/,franceinfo,,,,Europe/Paris,france
+20Minutes,https://www.20minutes.fr/,20 Minutes,,,,Europe/Paris,france
+le_Parisien,https://www.leparisien.fr/,Le Parisien,,,,Europe/Paris,france
+libe,https://www.liberation.fr/,Libération,,,,Europe/Paris,france
+LeHuffPost,https://www.huffingtonpost.fr/,Le Huffington Post,,,,Europe/Paris,france

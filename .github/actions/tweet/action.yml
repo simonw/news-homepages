@@ -1,3 +1,6 @@
+name: Twitter
+description: Post the provided sites to Twitter
+
 inputs:
   source:
     description: "The site handle to screenshot"
@@ -19,7 +22,12 @@ runs:
   steps:
     - uses: actions/download-artifact@v3
       with:
-        name: ${{ inputs.source }}
+        name: screenshots
+
+    - id: list
+      name: List
+      run: ls -alF
+      shell: bash
 
     - id: tweet
       name: Tweet

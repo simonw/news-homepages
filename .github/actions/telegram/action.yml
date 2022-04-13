@@ -1,3 +1,6 @@
+name: Telegram
+description: Post screenshots to Telegram of the provided site
+
 inputs:
   source:
     description: “The site handle to screenshot”
@@ -14,7 +17,12 @@ runs:
   steps:
     - uses: actions/download-artifact@v3
       with:
-        name: ${{ inputs.source }}
+        name: screenshots
+
+    - id: list
+      name: List
+      run: ls -alF
+      shell: bash
 
     - id: telegram
       name: Telegram

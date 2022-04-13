@@ -38,7 +38,7 @@ on:
 
 jobs:
   jpg:
-    name: Capture JPG
+    name: JPG
     runs-on: ubuntu-latest
     timeout-minutes: 5
     strategy:
@@ -56,6 +56,50 @@ jobs:
       - id: screenshot
         name: Screenshot
         uses: ./.github/actions/screenshot
+        with:
+          source: ${{ matrix.source }}
+          command: single
+
+  accessibility:
+    name: Accessibility tree
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save the accessibility tree
+        uses: ./.github/actions/accessibility
+        with:
+          source: ${{ matrix.source }}
+          command: single
+
+  hyperlinks:
+    name: Hyperlinks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save hyperlinks
+        uses: ./.github/actions/hyperlinks
         with:
           source: ${{ matrix.source }}
           command: single
@@ -81,6 +125,8 @@ jobs:
         with:
           source: ${{ matrix.source }}
           command: single
+          access-key: ${{ secrets.ia-access-key }}
+          secret-key: ${{ secrets.ia-secret-key }}
 
   twitter:
     name: Post to Twitter
@@ -159,7 +205,7 @@ jobs:
 
   archive:
     name: Post to archive.org
-    needs: [jpg]
+    needs: [jpg,accessibility,hyperlinks]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -182,3 +228,19 @@ jobs:
           access-key: ${{ secrets.ia-access-key }}
           secret-key: ${{ secrets.ia-secret-key }}
           collection: ${{ secrets.ia-collection }}
+
+  commit:
+    name: Commit to GitHub
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source: ${{fromJson(inputs.source)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: commit
+        name: Commit
+        uses: ./.github/actions/commit

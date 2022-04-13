@@ -38,7 +38,7 @@ on:
 
 jobs:
   jpg:
-    name: Capture JPG
+    name: JPG
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -53,6 +53,44 @@ jobs:
       - id: screenshot
         name: Screenshot
         uses: ./.github/actions/screenshot
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+
+  accessibility:
+    name: Accessibility tree
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save the accessibility tree
+        uses: ./.github/actions/accessibility
+        with:
+          source: ${{ inputs.source }}
+          command: bundle
+
+  hyperlinks:
+    name: Hyperlinks
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install
+        uses: ./.github/actions/install
+
+      - id: save-page
+        name: Save hyperlinks
+        uses: ./.github/actions/hyperlinks
         with:
           source: ${{ inputs.source }}
           command: bundle
@@ -75,6 +113,8 @@ jobs:
         with:
           source: ${{ inputs.source }}
           command: bundle
+          access-key: ${{ secrets.ia-access-key }}
+          secret-key: ${{ secrets.ia-secret-key }}
 
   twitter:
     name: Post to Twitter
@@ -142,9 +182,22 @@ jobs:
           command: bundle
           bot-token: ${{ secrets.discord-bot-token }}
 
+  commit:
+    name: Commit to GitHub
+    needs: [jpg]
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - id: commit
+        name: Commit
+        uses: ./.github/actions/commit
+
   archive:
     name: Post to archive.org
-    needs: [jpg]
+    needs: [jpg,accessibility,hyperlinks]
     runs-on: ubuntu-latest
     steps:
       - id: checkout
